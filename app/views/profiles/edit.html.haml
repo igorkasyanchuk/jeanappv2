@@ -1,0 +1,10 @@
+= title 'Edit Profile'
+
+%h1.left Edit Profile
+.add.right
+  = link_to 'Back', user_projects_path(current_user), :class => 'cancel_button'
+.clear
+
+- semantic_form_for @user, :url => profile_path(current_user) do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => { :f => f }  

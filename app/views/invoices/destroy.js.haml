@@ -1,0 +1,12 @@
+- @project.reload
+== $('#invoice-#{@invoice.id}').slideUp('slow').remove();
+$e = '#{ escape_javascript(render :partial => '/invoices/invoices', :locals => { :project => @project }) }';
+== $('.invoices').html($e);
+- if @project.invoices.count > 0
+  $('.invoices_list_is_empty').hide();
+- else
+  $('.invoices_list_is_empty').show();
+  
+= update_project_details(@project)
+= refresh_diagram(@project)
+= clear_fields

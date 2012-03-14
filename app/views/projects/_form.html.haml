@@ -1,0 +1,12 @@
+= error_messages_for :project
+
+= semantic_form_for([current_user, @project]) do |f|
+  - f.inputs do
+    = f.input :title
+    = f.input :client, :collection => current_user.clients.order_by_name.all
+    = f.input :description, :input_html => { :rows => 8 }
+    = f.input :started_on, :input_html => {:class => 'date_picker'}, :as => :string
+    = f.input :completed_on, :input_html => {:class => 'date_picker'}, :as => :string
+    = f.input :budget, :input_html => {:class => 'short_field'}
+  - f.buttons do
+    = f.submit f.object.new_record? ? 'Create' : "Update"

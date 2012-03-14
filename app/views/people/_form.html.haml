@@ -1,0 +1,21 @@
+- content_for :on_ready do
+  $('#person_dob_1i').val('');
+
+= error_messages_for :person
+
+= semantic_form_for([current_user, @person]) do |f|
+  - f.inputs do
+    = f.input :first_name, :label => 'First Name'
+    = f.input :last_name, :label => 'Last Name'
+    = f.input :email
+    = f.input :dob, :as => :date, :label => 'Birthday', :discard_year => true
+    = f.input :country, :input_html => {:class => 'short_field'}, :priority_countries => []
+    = f.input :city, :input_html => {:class => 'short_field'}
+    = f.input :time_zone, :as => :select, :collection => CUSTOM_TIME_ZONES, :input_html => {:class => 'short_field'}, :include_blank => false, :label => 'Time Zone'
+    = f.input :skype, :input_html => {:class => 'short_field'}
+    = f.input :odesk_url, :label => 'oDesk URL'
+    = f.input :hourly_rate, :label => 'Hourly Rate', :input_html => {:class => 'short_field'}
+    = f.input :tag_list, :label => 'Skills'
+    = f.input :description, :input_html => {:rows => 7}
+  - f.buttons do
+    = f.submit f.object.new_record? ? 'Create' : "Update"

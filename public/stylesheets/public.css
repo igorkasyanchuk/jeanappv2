@@ -1,0 +1,40 @@
+/* line 1, ../../app/stylesheets/public.sass */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 9, ../../app/stylesheets/public.sass */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: black;
+}
+
+/* line 25, ../../app/stylesheets/public.sass */
+div#title {
+  padding: 96px 36px 48px 36px;
+  background-color: black;
+}
+
+/* line 33, ../../app/stylesheets/public.sass */
+div#title p {
+  font-size: 48px;
+  letter-spacing: -1px;
+  line-height: 46px;
+  color: white;
+}
+
+/* line 45, ../../app/stylesheets/public.sass */
+#try_it_now {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+/* line 53, ../../app/stylesheets/public.sass */
+#try_it_now a {
+  color: white;
+}

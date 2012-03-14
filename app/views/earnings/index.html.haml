@@ -1,0 +1,51 @@
+= content_for :js_lib do
+  = add_google_table_chart
+   
+= content_for :on_ready do
+  !== draw_earnings_chart([#{@earnings}]);
+  init_update_chart();
+  !== init_earnings_filter( #{user_earnings_path(current_user).to_json} );
+     
+%h1 Earnings
+
+from
+= text_field_tag :start, params[:start], :class => 'single_date_picker', :id => 'start_earnings_chart'
+till
+= text_field_tag :end, params[:end], :class => 'single_date_picker', :id => 'end_earnings_chart'
+= submit_tag 'Show', :class => 'inline', :id => 'update_earhings_chart', :data => url_for([current_user, :earnings])
+
+%label.filter
+  = select_tag 'q', options_for_select([ ['Weekly view', 'week'], ['Monthly view', 'month']], params['filter']), { :id => 'earnings_filter' }
+.clear
+
+#chart_table
+
+%br
+
+%p
+  %span.legend
+    (from Monday to Monday)
+
+%br
+.clear
+    
+- str = params['filter'] && params['filter'] == 'week' ? "Weekly" : 'Monthly'
+%h4 #{str} Average:
+- profit = @info.collect{|i| i[1]}.sum / @info.size rescue 0
+- budget = @info.collect{|i| i[2]}.sum / @info.size rescue 0
+- employees = @info.collect{|i| i[3]}.sum / @info.size rescue 0
+- expenses = @info.collect{|i| i[4]}.sum / @info.size rescue 0
+
+%table.zebra.projects
+  %thead
+    %tr
+      %th Budget
+      %th Profit
+      %th Employees
+      %th Expenses
+  %tbody
+    %tr
+      %td= number_to_currency(budget, :precision => 0)
+      %td= number_to_currency(profit, :precision => 0)
+      %td= number_to_currency(employees, :precision => 0)
+      %td= number_to_currency(expenses, :precision => 0)

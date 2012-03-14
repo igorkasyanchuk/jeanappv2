@@ -1,0 +1,108 @@
+= content_for :on_ready do
+  !== show_money_chart(#{project.money_chart.to_json});
+  !== show_time_chart(#{project.time_chart.to_json});
+
+.project_info
+  .w49.left
+    %h2 Money
+    %ul.info_table
+      %li
+        %strong.property_name Flat Rate
+        %span= number_to_currency project.budget, :precision => 2
+        .clear
+      %li
+        %strong.property_name{"data-class" => '.invoices', :class => "#{'expand expand_down' if project.any_invoices?}"} Hourly
+        %span= number_to_currency project.invoiced, :precision => 2
+        .clear
+      %li.none.invoices.sub
+        %strong.property_name Hours
+        %span #{project.invoiced_hours} hours
+        .clear
+      %li.none.invoices.sub
+        %strong.property_name Hourly Rate
+        %span #{number_to_currency project.average_invoiced, :precision => 2} per hour
+        .clear
+      %li.divider
+      %li
+        %strong Invoiced
+        %span.strong= number_to_currency project.total_invoiced, :precision => 2
+        .clear
+      %li.divider
+      %li
+        %strong.property_name{"data-class" => '.employees', :class => "#{'expand expand_down' if project.people.count > 0}"} Employees
+        %span= number_to_currency -project.amount_total, :precision => 2
+        .clear
+      - project.people.each do |p|
+        %li.none.employees.sub
+          %strong.property_name= link_to p.name, [current_user, p]
+          %span= number_to_currency -(project.total_money_by_person(p)), :precision => 2
+          .clear
+      %li
+        %strong.property_name Expenses
+        %span #{number_to_currency -(project.project_expenses), :precision => 2}
+        .clear
+      %li.divider
+      %li
+        %strong.property_name Income
+        %span= number_to_currency project.income, :precision => 2
+        .clear
+      %li
+        %strong.property_name Hourly Rate
+        %span!= (project.personal_rate.infinite? || project.personal_rate.nan?) ? '&mdash;' : number_to_currency(project.personal_rate, :precision => 2)
+        .clear
+      %li.divider
+      %li
+        %strong.property_name Taxes (#{current_user.taxes}%)
+        %span= number_to_currency -(project.taxes), :precision => 2
+        .clear
+      %li.divider.summarize
+      %li
+        %strong Profit
+        %span.strong== #{(project.profit > 0) ? '+' : ''}#{number_to_currency project.profit, :precision => 2}
+        .clear
+    .info_chart
+      #money_holder
+    .clear
+  .w49.right
+    %h2 Time
+    %ul.info_table
+      %li
+        %strong.property_name Started On
+        %span= project.started_on
+        .clear
+      %li
+        %strong.property_name Closed On
+        %span= project.completed_on || 'In Progress'
+        .clear
+      %li.divider
+      %li
+        %strong Project Length
+        %span.strong= pluralize(project.project_length, 'day')
+        .clear
+      %li.divider
+      %li
+        %strong.property_name My Hours
+        %span #{@project.project_own_hours} hours
+        .clear
+      %li
+        %strong.property_name{"data-class" => '.hours', :class => "#{'expand expand_down' if project.people.count > 0}"} Employee Hours
+        %span #{@project.hours_total} hours
+        .clear
+      - project.people.each do |p|
+        %li.none.hours.sub
+          %strong.property_name= link_to p.name, [current_user, p]
+          %span #{project.total_hours_by_person(p)} hours
+          .clear
+      %li.divider.summarize
+      %li
+        %strong Total Hours
+        %span.strong #{project.project_total_hours} hours
+        .clear
+      %li
+        %strong Efficency
+        %span.strong #{number_to_percentage project.efficency, :precision => 2}
+        .clear
+    .info_chart
+      #time_holder
+    .clear
+  .clear

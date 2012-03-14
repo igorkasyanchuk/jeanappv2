@@ -1,0 +1,15 @@
+%tfoot
+  %tr
+    %td{:rowspan => 2}
+    %td{:rowspan => 2}
+      .just_text= pluralize(rejected_projects.size, 'Project')
+    %td.text_right{:colspan => add_column ? 3 : 2} Average
+    %td= number_to_currency(rejected_projects.collect(&:cached_budget).sum / rejected_projects.size, :precision => 2)
+    %td= number_to_currency(rejected_projects.collect(&:profit).sum / rejected_projects.size, :precision => 2)
+    %td{:rowspan => 2}
+      - ps = rejected_projects.reject{|p| p.personal_rate.infinite? || p.personal_rate.nan? }.collect(&:personal_rate)
+      = number_to_currency(ps.sum / ps.size, :precision => 2) rescue 0
+  %tr
+    %td.text_right{:colspan => add_column ? 3 : 2} Total
+    %td= number_to_currency(rejected_projects.collect(&:cached_budget).sum, :precision => 2)
+    %td= number_to_currency(rejected_projects.collect(&:profit).sum, :precision => 2)

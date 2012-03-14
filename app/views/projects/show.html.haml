@@ -1,0 +1,81 @@
+= title @project.title
+
+- if @project.has_client?
+  %h1.left.project_name_on_page #{link_to @project.client.name, [@project.user, @project.client], :class => 'client_name_on_page'} &mdash; #{@project.title}
+- else
+  %h1.left.project_name_on_page #{@project.title}
+
+.add.right{:style => 'margin-top: 2em'}
+  = link_to 'Edit', edit_resource_path(@project), :class => 'edit_button'
+.clear
+
+= simple_format @project.description unless @project.description.blank?
+
+#info= render :partial => '/projects/info', :locals => { :project => @project }
+
+%h2.left Employees
+.right.add= link_to 'Add Employee', '#', :class => 'add_button', :to => '.staff_form'
+.clear
+= render :partial => '/people/staffs', :locals => { :project => @project }
+.add_more_block
+  = semantic_form_for [current_user, @project, @project.project_staffs.build], :remote => true, :html => { :class => 'none staff_form' } do |f|
+    = f.inputs do
+      = f.input :person, :as => :select, :include_blank => false, :collection => current_user.people.collect{|p| [ "#{p.name} (#{number_to_currency(p.hourly_rate, :precision => 2)}/hour)", p.id ] }
+      = f.input :hours_count
+      = f.input :description, :input_html => { :rows => '2', :cols => '40' }
+    = f.buttons do
+      = f.submit 'Add employee'
+      = link_to 'Hide', '#', :class => 'hide cancel_button'
+
+
+%h2.left Own Hours
+.right.add= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'
+.clear
+= render :partial => '/own_hours/own_hours', :locals => { :project => @project }
+.add_more_block
+  = semantic_form_for [current_user, @project, @project.own_hours.build], :remote => true, :html => { :class => 'none own_hour_form' } do |f|
+    = f.inputs do
+      = f.input :hours_count
+      = f.input :description, :input_html => { :rows => '2', :cols => '40' }
+    = f.buttons do
+      = f.submit 'Add own hours'
+      = link_to 'Hide', '#', :class => 'hide cancel_button'
+
+
+%h2.left Expenses
+.right.add= link_to 'Add Expense', '#', :class => 'add_button', :to => '.expense_form'
+.clear
+= render :partial => '/expenses/expenses', :locals => { :project => @project }
+.add_more_block
+  = semantic_form_for [current_user, @project, @project.expenses.build], :remote => true, :html => { :class => 'none expense_form' } do |f|
+    = f.inputs do
+      = f.input :amount, :label => 'Amount, $'
+      = f.input :description, :input_html => { :rows => '2', :cols => '40' }, :label => 'Expense Description'
+    = f.buttons do
+      = f.submit 'Add new expense'
+      = link_to 'Hide', '#', :class => 'hide cancel_button'
+
+%h2.left Invoices
+.right.add= link_to 'Add Invoice', '#invoice_form_container', :class => 'add_button add_invoice2'
+.clear
+
+.all_invoices= render :partial => '/invoices/invoices', :locals => { :project => @project }
+
+.none
+  %a{:href => '#invoice_form_container', :class => 'add_invoice_button none'} Add Invoice
+  #invoice_form_container
+    = semantic_form_for [current_user, @project, @project.invoices.build], :remote => true, :html => { :class => 'invoice_form' } do |f|
+      = f.inputs do
+        = f.input :hours_count, :label => 'Hours'
+        = f.input :hourly_rate, :label => 'Hourly Rate'
+        = f.input :description, :input_html => { :rows => '4', :cols => '40' }, :label => 'Invoice Description'
+      = f.buttons do
+        = f.submit 'Add new invoice'
+        = link_to 'Hide', '#', :class => 'hide cancel_button'
+      
+- content_for :on_ready do
+  init_add_form();
+  init_add_invoice();
+  init_project_show_page();
+
+= render :partial => '/notes/notes', :locals => { :noteable => @project }

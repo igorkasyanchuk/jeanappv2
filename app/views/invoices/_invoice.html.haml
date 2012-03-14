@@ -1,0 +1,10 @@
+.invoice{ :class => cycle(:odd, :even), :id => "invoice-#{invoice.id}" }
+  .invoice_date
+    .date= invoice.created_at.to_date.to_s(:short_date)
+    .time= invoice.created_at.to_s(:time_12)
+  .hours= invoice.hours_count
+  .hourly_rate= number_to_currency invoice.hourly_rate
+  .paid= number_to_currency invoice.cached_invoice_amount
+  .message!= RedCloth.new(invoice.description).to_html
+  .controls= link_to 'remove', [current_user, invoice.project, invoice], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+  .clear

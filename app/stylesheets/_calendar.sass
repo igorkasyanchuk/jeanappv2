@@ -1,0 +1,151 @@
+#calendar
+  margin: 30px auto 15px auto
+  padding: 0 0 20px 0
+  width: 900px
+  background: #fff
+  font-size: 24px
+  border-top: 2px solid #000
+  border-bottom: 1px solid #000
+
+#calendar table
+  width: 100%
+  border-spacing: 0px
+  border: 0 none
+  
+#calendar table th
+  background: none  
+
+#calendar table th.monthName
+  padding: 10px 0
+  font-size: 48px
+  letter-spacing: 5px
+  color: #b20000
+  text-align: center
+  
+#calendar tr.dayname th.weekendDayHeader
+  color: #666
+
+#calendar table th a
+  display: block
+  font-weight: normal
+  text-align: left
+
+#calendar table th a.next 
+  text-align: right 
+
+#calendar table td
+  position: relative
+  text-align: center
+  font-size: 36px
+  font-weight: bold
+  width: 100px
+
+#calendar table td.otherMonth
+  color: #ccc
+
+#widget form 
+  width: 700px
+  margin: 0 
+  padding: 0
+
+#widget p
+  font-size:  12px
+
+#widget textarea 
+  width: 400px
+  height: 150px
+  margin: 0 150px
+
+#calendar tr.dayname th
+  width: 100px
+  padding: 5px 0
+  font-size: 12px
+  color: #666
+  font-weight: normal
+  letter-spacing: 2px
+  border: 1px solid #eee
+  border-left: none
+  border-right: none
+  text-align: center
+
+tr.dayname abbr
+  border: none
+
+.otherMonth .xmarksthespot
+  opacity: 0.2
+
+.xmarksthespot
+  width: 100px
+  height: 60px
+  position: relative
+  float: left
+  margin-top: -60px
+  z-index: 100
+  background: url(/images/x_1.png) 60% 100% no-repeat
+
+.x-1 
+  background-image: url(/images/x_1.png)
+.x-2 
+  background-image: url(/images/x_2.png)
+.x-3 
+  background-image: url(/images/x_3.png)
+
+.today 
+  color: green
+  background: #eee
+
+=last_column
+  border-left: 1px solid #666
+  border-right: 1px solid #666
+  
+#calendar table td
+  position: relative
+  line-height: 80px
+  border: 1px solid #eee
+  div.day_id
+    display: block
+    float: right
+    font-size: 12px
+    line-height: 14px
+    color: #ccc
+  div.past_day
+    background: url(/images/calendar/x_2_small.png) no-repeat left 2px
+    color: #333
+  span
+    display: block
+    font-size: 16px
+    color: #333
+  &:hover
+    background: #eee
+    cursor: pointer
+  &.total_sum:hover
+    background: #F1EEE5    
+    
+#calendar table td.otherMonth
+  visibility: hidden
+  
+#calendar table td span.plus_sign
+  color: #4CB249
+  
+#calendar table td span.minus_sign
+  color: #B20000  
+  
+#calendar table td span.zero_sign
+  color: #aaa
+  
+#calendar table th.total_sum_header
+  font-weight: bold
+  background: #F1EEE5
+  +last_column
+  
+#calendar table tr td.total_sum
+  +last_column
+  background: #F1EEE5
+  border-top: 1px solid #F1EEE5
+  border-bottom: 1px solid #F1EEE5
+  
+#calendar table tr
+  border-top: 2px solid #ccc  
+  
+.ajax_controls, .ajax_loader
+  float: left

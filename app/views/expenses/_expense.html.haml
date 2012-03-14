@@ -1,0 +1,8 @@
+.expense{ :class => cycle(:odd, :even), :id => "expense-#{expense.id}" }
+  .expense_date
+    .date= expense.created_at.to_date.to_s(:short_date)
+    .time= expense.created_at.to_s(:time_12)
+  .amount= number_to_currency expense.amount
+  .message!= RedCloth.new(expense.description).to_html
+  .controls= link_to 'remove', [current_user, expense.project, expense], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+  .clear

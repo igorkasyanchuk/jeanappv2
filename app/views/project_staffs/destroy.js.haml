@@ -1,0 +1,15 @@
+== $('#staff-#{@project_staff.id}').slideUp('slow').remove();
+$e = '#{ escape_javascript(render :partial => '/people/staffs', :locals => { :project => @project }) }';
+== $('.staff').html($e);
+- if @project.project_staffs.count > 0
+  $('.staff_list_is_empty').hide();
+- else
+  $('.staff_list_is_empty').show();
+$('tr.about_staff').remove();
+$s = '#{ escape_javascript(render :partial => '/project_staffs/project_staff', :locals => { :project => @project }) }';
+$('tr.about_staff').remove();  
+$('.manage_project').append($s);
+
+= update_project_details(@project)
+= refresh_diagram(@project)
+= clear_fields

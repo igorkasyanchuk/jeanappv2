@@ -1,0 +1,11 @@
+$e = '#{ escape_javascript(render :partial => '/expenses/expenses', :locals => { :project => @project }) }';
+== $('.expenses').html($e).find('.expense').eq(1).effect('highlight', {}, 2000);
+$('.expense_form a.hide').trigger('click');
+- if @project.expenses.count > 0
+  $('.expenses_list_is_empty').hide();
+- else
+  $('.expenses_list_is_empty').show();
+
+=update_project_details(@project)
+=refresh_diagram(@project)
+=clear_fields

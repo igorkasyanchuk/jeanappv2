@@ -1,0 +1,23 @@
+= title 'Clients'
+
+%h1.left Clients
+.add.right= link_to 'Add Client', new_resource_path, :class => 'add_button'
+.clear
+
+- unless @clients.empty?
+  %table.zebra.clients
+    %thead
+      %tr
+        %th= sortable 'name', 'Name'
+        %th= sortable 'projects_total', 'Projects'
+        %th= sortable 'empoyees_total', 'Empoyees'
+
+    %tbody
+      - for client in @clients
+        %tr{ :class => "#{cycle(:odd, :even)}"}
+          %td= link_to client.name, [current_user, client], :class => 'bold_text'
+          %td= client.projects.count
+          %td= client.empoyees_count
+- else
+  %p
+    %strong List is empty.

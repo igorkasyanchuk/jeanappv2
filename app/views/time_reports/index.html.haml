@@ -1,0 +1,11 @@
+= title "Time Analize"
+
+#calendar
+  != time_calendar
+  
+%p
+  %br
+  Showing your time / contractors total time.
+  
+- content_for :on_ready do
+  init_time_view();

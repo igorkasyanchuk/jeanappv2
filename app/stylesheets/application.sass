@@ -1,0 +1,258 @@
+@import "base"
+@import "calendar"
+@import "colorbox"
+@import "project"
+
+$width: 98%
+$margin: 1%
+$max_width: 1240px
+
+$border_for_notice: unquote("1px solid #ccc")
+
+=bordered($color: red)
+  border: unquote("1px solid #{$color}")
+
+=alpha-omega
+  +alpha
+  +omega
+
+#root
+  margin-left: auto
+  margin-right: auto
+  width: $width
+  max-width: $max_width
+  #header
+    +grid-container
+    height: 80px
+    #logo
+      +grid(6)
+      +alpha
+      h1
+        font-size: 2.3em
+    #nav_container
+      +grid(16)
+      +alpha
+      +omega
+      ul#nav
+        +float-right
+        +horizontal-list
+        height: 2em
+        padding-top: 1em
+        li
+          +text-right
+          a
+            font-size: 0.9em
+            padding: 2px 2px
+  #content
+    .container
+      display: inline
+      float: left
+      margin-left: $margin
+      margin-right: $margin
+      width: $width - $margin
+      max-width: $max_width
+    div.flash
+      +grid(15)
+      margin-top: 0.6em
+      margin-bottom: 0.6em
+      +alpha
+      +omega
+      padding: 4px 6px
+      border: $border_for_notice
+      +rounded_corners
+    div.flash.error
+      color: #8a1f11
+      background: #fff6bf
+      border-color: #ffd324
+    div.flash.notice
+      color: #514721
+      background: #fff6bf
+      border-color: #ffd324
+    #admin_menu
+      +grid(16)
+      +alpha
+      +omega
+      padding-top: 0.3em
+      padding-bottom: 0.3em
+      position: relative
+      z-index: 11
+    #admin_section
+      +grid(16)
+      +alpha
+      +omega
+      padding-bottom: 1em
+      h1, h2, h3
+        margin: 0.5em 0
+
+#footer
+  hr
+    margin: 0
+  a
+    font-size: 0.9em
+    padding-top: 4px
+    float: right
+
+html body
+  line-height: 1.5em
+
+.reset_all
+  *
+    padding: 0
+    margin: 0
+    font-size: 100%
+
+ul li.top_border
+  border-top: 1px solid #eeeeee
+
+.font_09
+  font-size: 0.9em
+
+.w_50
+  width: 50%
+  
+hr
+  margin: 5px 0px
+  border-top: 1px dashed #dddddd
+
+.clear
+  clear: both  
+
+.left
+  float: left
+  
+.right
+  float: right
+  
+.block
+  display: block
+  
+th
+  .current
+    padding-right: 20px
+    background-repeat: no-repeat
+    background-position: right center
+  .asc
+    background-image: url(/images/sort-asc1.png)
+  .desc
+    background-image: url(/images/sort-desc1.png)
+    
+    
+html dl
+  margin-top: 0em
+  
+#try_it_now
+  position: absolute
+  right: 10px
+  top: 10px
+  background: #FFDE01
+  padding: 4px 6px
+  font-size: 18px
+  -moz-border-radius: 12px
+  -webkit-border-radius: 12px
+
+.no_bottom_margin
+  margin: 0
+  
+.margin_top_1em
+  margin-top: 1em
+  
+.margin_bottom_40px
+  margin-bottom: 40px
+  
+
+.margin_bottom_30px
+  margin-bottom: 30px
+  
+#map
+  margin-top: 0px
+  margin-bottom: 20px
+  width: 100%
+  height: 470px
+  
+.info_window
+  font-size: 12px
+  h1
+    font-size: 16px
+    margin-bottom: 6px
+  strong
+    font-size: 12px
+    
+.tooltip
+  background-color: #FFFFFF
+  border: 2px solid #CCCCCC
+  padding: 2px
+  white-space: nowrap
+
+.googleMarkerTab .address
+  margin-bottom: 0.6em
+
+.tooltip dl, .tooltip dd, .tooltip dt
+  margin: 0px
+  padding: 0px
+
+.tooltip dt 
+  font-weight: bold
+
+.tooltip dd
+  margin-left: 1em
+
+.tooltip img
+  border: 1px solid #AAAAAA
+  display: block
+  
+.tooltip span
+  font-size: 12px
+  color: #999
+  
+label.filter
+  font-size: 12px
+  font-weight: bold
+  float: right
+  select
+    font-size: 12px
+    
+.just_text
+  font-style: normal
+  font-weight: normal
+  
+.css1 
+  font-size: 8px
+.css2 
+  font-size: 10px
+.css3
+  font-size: 14px
+.css4 
+  font-size: 18px
+  
+ol.people_list
+  margin-top: 0
+  margin-bottom: 0
+  
+#invoice_form_container
+  padding: 1em 1em 2em 1em
+  text-align: left
+  
+html body form.new_user_money
+  padding: 6px 0
+  .field
+    padding: 6px 0
+    text-align: left
+    label
+      font-weight: bold
+      
+.client_name_on_page
+  color: black
+  font-weight: bold
+  text-decoration: underline
+  &:hover
+    color: black
+
+.project_name_on_page
+  margin-top: 2em
+  a
+    color: #333
+    
+#calendar table td .time_cell
+  display: block
+  color: #666
+  font-size: 14px

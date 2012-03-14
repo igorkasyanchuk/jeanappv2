@@ -1,0 +1,28 @@
+.staff
+  - if project.project_staffs.count > 0
+    .person
+      .person_date
+        .date
+          %strong Date/Time
+      .person_name 
+        %strong Person
+      .person_description
+        %strong Description
+      .hours_count
+        %strong Hours
+      .amount
+        %strong Money
+      .controls 
+        %strong Actions
+      .clear  
+    - project.project_staffs.backward.each do |staff|
+      = render :partial => '/people/staff', :locals => { :staff => staff }
+    .person.summary
+      .hours_total.hours_count
+        %strong== Total: #{project.hours_total} hours
+      .amount
+        %strong== #{number_to_currency(project.amount_total, :precision => 2)}
+      .clear      
+  - else
+    .staff_list_is_empty
+      %i List is empty. Add Employees.

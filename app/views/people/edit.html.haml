@@ -1,0 +1,6 @@
+%h1.left== Edit: #{@person.name}
+.add.right
+  = link_to 'Back', collection_path, :class => 'cancel_button'
+  = link_to 'Show', resource_path(@person), :class => 'show_button'
+.clear
+= render 'form'

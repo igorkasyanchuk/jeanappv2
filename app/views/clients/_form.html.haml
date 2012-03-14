@@ -1,0 +1,7 @@
+= error_messages_for :client
+
+= semantic_form_for([current_user, @client]) do |f|
+  - f.inputs do
+    = f.input :name
+  - f.buttons do
+    = f.submit f.object.new_record? ? 'Create' : "Update"

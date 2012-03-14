@@ -1,0 +1,38 @@
+%div{:id => "day-form-#{day}", :class => 'none'}
+  - arr = current_user.user_moneys.by_date(day)
+  = form_for [current_user, current_user.user_moneys.build], :remote => true do |f|
+    .field
+      %strong= l day, :format => :long
+    .field
+      = f.label :amount, 'Amount', :style => 'width: 60px'
+      %br
+      = f.text_field :amount
+      = f.hidden_field :date_on, :value => day
+    .field
+      = f.label :description
+      %br
+      = f.text_area :description, :cols => 70, :rows => 3
+    .field
+      .ajax_controls
+        = f.submit 'Add'
+        = link_to 'Hide', '#', :class => 'hide cancel_button'
+      .ajax_loader.none
+        = image_tag 'ajax.gif'
+      .clear
+    - if arr.size > 0
+      .day_history
+        %table.zebra{:style => 'width: 98%'}
+          %thead
+            %tr
+              %th Amount
+              %th Description
+              %th{:style => 'width: 18px'}
+          %tbody
+            - arr.each_with_index do |um, index|
+              %tr{:class => index % 2 == 0 ? 'even' : 'odd', :id => "tr-#{um.id}"}
+                %td= number_to_currency(um.amount, :precision => 2).gsub('.00', '').gsub('$-', '-$')
+                %td= um.description
+                %td
+                  = link_to (image_tag('icons/fileclose.png')), [current_user, um], :method => :delete, :remote => true, :confirm => 'Are you sure?', :class => 'delete_row_link'
+                  = image_tag 'ajax.gif', :class => 'none'
+        

@@ -1,0 +1,10 @@
+%tr.about_staff
+  %td.table_block{:colspan => 2} Project Employees
+- project.people.each do |p|
+  %tr.about_staff
+    %td= p.tags.join(', ')
+    %td= link_to p.name, [current_user, p]
+- if project.people.count == 0
+  %tr.about_staff
+    %td
+    %td not present

@@ -1,0 +1,48 @@
+= content_for :map do
+  /== <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{GOOGLE_KEYS[Rails.env.to_s]}" type="text/javascript"></script>
+  /= javascript_include_tag 'Tooltip.v2', 'daylight'
+
+= title 'Employees'
+
+= content_for :on_ready do
+  /!= "show_people_on_map(#{current_user.location_info}, #{current_user.people_info.collect{|pi| pi['id'] = user_person_path(current_user, pi['id']); pi}.to_json});"
+
+%h1.left.no_bottom_margin.margin_bottom_30px.margin_top_1em Employees
+.add.right= link_to 'Add new Employee', new_resource_path, :class => 'add_button'
+.clear
+
+#map.none
+
+- unless @people.empty?
+  - unless params[:tag].blank?
+    .notice
+      .left
+        %strong With tag: #{params[:tag]}
+      .action_block.left= link_to 'reset', [current_user, :people], :class => 'cross_small_white_button'
+      .clear
+  %table.zebra
+    %thead
+      %tr
+        %th= sortable 'last_name', 'Name', { :tag => params[:tag] }
+        %th= sortable 'local_time', 'Local Time', { :tag => params[:tag] }
+        %th= sortable 'email', 'Email', { :tag => params[:tag] }
+        %th= sortable 'hourly_rate', 'Hourly Rate', { :tag => params[:tag] }
+        %th= sortable 'workload', 'Workload', { :tag => params[:tag] }
+    
+    %tbody
+      - for person in @people
+        %tr{ :class => cycle(:odd, :even) }
+          %td= link_to person.name, [current_user, person]
+          %td= person.local_time
+          %td= raw auto_link person.email
+          %td= number_to_currency(person.hourly_rate) || 'not set'
+          %td= person.workload
+
+- else
+  %p
+    %strong List is empty.
+
+.notice
+  %strong Search by tags
+- tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, { :action => :index, :tag => tag.name }, :class => css_class

@@ -1,0 +1,11 @@
+%h1= t '.title'
+%p
+  = link_to t('edit'), edit_note_path(@note)
+
+%dl
+  %dt= Note.human_attribute_name :noteable_id
+  %dd= @note.noteable_id
+  %dt= Note.human_attribute_name :noteable_type
+  %dd= @note.noteable_type
+  %dt= Note.human_attribute_name :note
+  %dd= @note.note

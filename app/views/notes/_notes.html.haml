@@ -1,0 +1,17 @@
+%h2 Notes
+.notes
+  - noteable.notes.backward.each do |note|
+    .note{ :class => cycle(:odd, :even), :id => "note_#{note.id}" }
+      .note_date
+        .date= note.created_at.to_date.to_s(:short_date)
+        .time= note.created_at.to_s(:time_12)
+      .message!= RedCloth.new(note.note).to_html
+      .controls= link_to 'remove', [current_user, note], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+      .clear
+
+= semantic_form_for [current_user, noteable] do |f|
+  = f.inputs do
+    = f.semantic_fields_for :notes, noteable.notes.build do |form|
+      = form.input :note, :input_html => { :rows => '4', :cols => '40' }, :label => 'Add new note'
+  = f.buttons do
+    = f.submit 'Post'

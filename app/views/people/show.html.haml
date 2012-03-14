@@ -1,0 +1,98 @@
+= title @person.name
+
+%h1.left= @person.name
+.add.right
+  = link_to 'Edit', edit_resource_path(@person), :class => 'edit_button'
+  = link_to 'Delete', resource_path(@person), :confirm => 'Are you sure?', :method => :delete, :class => 'delete_button'
+.clear
+
+%table.w49
+  - if @person.first_name.present?
+    %tr
+      %td First Name
+      %td= @person.first_name
+  
+  - if @person.last_name.present?
+    %tr
+      %td Last Name
+      %td= @person.last_name
+
+  - if @person.email.present?
+    %tr
+      %td Email
+      %td= raw auto_link @person.email
+
+  - if @person.skype.present?
+    %tr
+      %td Skype
+      %td
+        ==<img src="http://mystatus.skype.com/smallicon/#{@person.skype}" alt="Status">
+        = link_to @person.skype, "skype:#{@person.skype}?chat"
+
+  - if @person.country.present?
+    %tr
+      %td Country
+      %td= @person.country
+
+  - if @person.city.present?
+    %tr
+      %td City
+      %td= @person.city
+
+  - if @person.odesk_url.present?
+    %tr
+      %td oDesk URL
+      %td= raw auto_link @person.odesk_url, :all, :target => '_blank'
+    
+  - if @person.time_zone.present?
+    %tr
+      %td Time Zone
+      %td= CUSTOM_TIME_ZONES.detect{|t| t[1] == @person.time_zone }[0] rescue nil
+
+  - if @person.time_zone.present?
+    %tr
+      %td Local Time
+      %td= Time.zone.now.in_time_zone(@person.time_zone).to_s(:time_12) rescue nil
+
+  - if @person.hourly_rate.present?
+    %tr
+      %td Hourly Rate
+      %td= number_to_currency @person.hourly_rate
+
+  - if @person.dob.present?
+    %tr
+      %td Birthday
+      %td= @person.dob.to_date.to_s(:dod)
+
+  - if @person.tag_list.present?
+    %tr
+      %td Skills
+      %td= @person.tag_list.join(', ')
+      
+  - if @person.description.present?
+    %tr
+      %td Description
+      %td= @person.description
+
+%h2 Projects History
+- if @person.project_staffs.count > 0
+  %table
+    %tr
+      %th Date
+      %th Project Name
+      %th Status
+      %th Hours
+      %th Money
+      %th Description
+    - @person.project_staffs.backward.each do |p|
+      %tr
+        %td= p.created_at.to_s(:long)
+        %td= link_to p.project.title, [current_user, p.project]
+        %td= p.project.completed? ? 'completed' : 'in progress'
+        %td= p.hours_count
+        %td= number_to_currency(p.amount, :precision => 2)
+        %td= p.description
+- else
+  %strong List is empty.        
+
+= render :partial => '/notes/notes', :locals => { :noteable => @person }    

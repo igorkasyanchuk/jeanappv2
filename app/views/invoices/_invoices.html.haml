@@ -1,0 +1,22 @@
+.invoices
+  - if project.invoices.count > 0
+    .invoice
+      .invoice_date
+        .date
+          %strong Date/Time
+      .hours 
+        %strong Hours
+      .hourly_rate 
+        %strong Hourly Rate
+      .paid
+        %strong Amount
+      .message 
+        %strong Description
+      .controls 
+        %strong Actions
+      .clear  
+    - project.invoices.backward.each do |invoice|
+      = render :partial => '/invoices/invoice', :locals => { :invoice => invoice }
+  - else
+    .invoices_list_is_empty
+      %i List is empty. Add invoice.

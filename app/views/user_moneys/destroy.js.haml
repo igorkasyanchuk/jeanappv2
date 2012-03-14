@@ -1,0 +1,12 @@
+$("#tr-#{@user_money.id}").remove();
+
+!==$e = '#{ escape_javascript(money_calendar(@user_money.date_on.year, @user_money.date_on.month)) }';
+$.colorbox.close();
+$('#calendar').html($e);
+$("#calendar select, #calendar input, #calendar textarea, #calendar input:checkbox, #calendar input:radio, #calendar input:file").uniform(); 
+
+calculate_total_sum();
+
+//if ($('#cboxContent .day_history table tr').length <= 1 ) {
+//$('.day_history').hide();
+//}

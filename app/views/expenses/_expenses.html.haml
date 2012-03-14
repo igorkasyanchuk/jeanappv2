@@ -1,0 +1,22 @@
+.expenses
+  - if project.expenses.count > 0
+    .expense
+      .expense_date
+        .date
+          %strong Date/Time
+      .amount 
+        %strong Amount
+      .message 
+        %strong Description
+      .controls 
+        %strong Actions
+      .clear  
+    - project.expenses.backward.each do |expense|
+      = render :partial => '/expenses/expense', :locals => { :expense => expense }
+    .expense.summary
+      .amount.amount_total
+        %strong== Total: #{number_to_currency(project.project_expenses)}
+      .clear
+  - else
+    .expenses_list_is_empty
+      %i List is empty. Add Expense.

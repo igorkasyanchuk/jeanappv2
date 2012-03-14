@@ -1,0 +1,22 @@
+.own_hours
+  - if project.own_hours.count > 0
+    .own_hour
+      .own_hour_date
+        .date
+          %strong Date/Time
+      .hours_count 
+        %strong Hours Count
+      .description
+        %strong Description
+      .controls 
+        %strong Actions
+      .clear  
+    - project.own_hours.backward.each do |own_hour|
+      = render :partial => '/own_hours/own_hour', :locals => { :own_hour => own_hour }
+    .own_hour.summary
+      .hours_count.hours_count_total
+        %strong== Total: #{project.project_own_hours} hours
+      .clear
+  - else
+    .own_hours_list_is_empty
+      %i List is empty. Add own hour.

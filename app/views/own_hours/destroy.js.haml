@@ -1,0 +1,12 @@
+== $('#own_hour-#{@own_hour.id}').slideUp('slow').remove();
+$e = '#{ escape_javascript(render :partial => '/own_hours/own_hours', :locals => { :project => @project }) }';
+== $('.own_hours').html($e);
+
+- if @project.own_hours.count > 0
+  $('.own_hours_list_is_empty').hide();
+- else
+  $('.own_hours_list_is_empty').show();
+
+= update_project_details(@project)
+= refresh_diagram(@project)
+= clear_fields

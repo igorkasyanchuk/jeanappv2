@@ -1,0 +1,55 @@
+%table.manage_project
+  %tr
+    %td.table_block{:colspan => 2} Quick Details
+  - if @project.client.present?
+    %tr
+      %td Client
+      %td= link_to @project.client.name, [current_user, @project.client]
+  %tr
+    %td Budget
+    %td= number_to_currency @project.budget
+  %tr
+    %td Invoiced
+    %td
+      = number_to_currency @project.invoiced
+      .right
+        %a{:href => '#invoice_form_container', :class => 'add_invoice_button'} Add Invoice
+        &nbsp;
+      .clear
+  %tr
+    %td Total
+    %td
+      = number_to_currency @project.cached_budget
+  %tr
+    %td{:colspan => 2}
+  %tr
+    %td.table_block{:colspan => 2} Details
+  %tr
+    %td Started on
+    %td= project.started_on
+  %tr
+    %td Closed on
+    %td= project.completed_on || 'in progress'
+  %tr
+    %td Total Developers Spent
+    %td.amount_total_value= number_to_currency @project.amount_total
+  %tr
+    %td Total Developers Hours Spent
+    %td.hours_total_value== #{@project.hours_total} hours
+  %tr
+    %td Expenses
+    %td.total_expenses= number_to_currency(@project.project_expenses)
+  %tr
+    %td.table_block{:colspan => 2} Financial Details
+  %tr
+    %td Total Own Hours Spent
+    %td.own_hours_total_value== #{@project.project_own_hours} hours
+  %tr
+    %td Hourly Rate
+    %td.personal_rate!= (@project.personal_rate.infinite? || project.personal_rate.nan?) ? '&mdash'.html_safe : number_to_currency(@project.personal_rate, :precision => 2)
+  %tr
+    %td Profit
+    %td.profit== #{number_to_currency(@project.profit, :precision => 2)}
+  %tr
+    %td{:colspan => 2}
+  = render :partial => '/project_staffs/project_staff', :locals => { :project => project }

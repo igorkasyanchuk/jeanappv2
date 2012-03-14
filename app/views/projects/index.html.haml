@@ -1,0 +1,51 @@
+= content_for :on_ready do
+  init_project_on_off();
+  !== init_projects_filter( #{user_projects_path(current_user).to_json} );
+  
+= title 'Projects'
+
+%h1.left Projects
+.add.right= link_to 'Add Project', new_resource_path, :class => 'add_button'
+.clear
+
+- unless @projects.empty?
+  %label.filter
+    = select_tag 'q', options_for_select([ ['All Projects', 'all'], ['Closed', 'closed'], ['In Progress', 'in-progress'] ], params["filter"] || current_user.last_filter), { :id => 'projects_filter' }
+  .clear
+  %table.zebra.projects
+    %thead
+      %tr
+        %th.icon{:width => '20px'}
+        %th= sortable 'title', 'Title', { :filter => params['filter'] }
+        %th= sortable 'client', 'Client', { :filter => params['filter'] }
+        %th= sortable 'started_on', 'Started on', { :filter => params['filter'] }
+        %th= sortable 'completed_on', 'Closed on', { :filter => params['filter'] }
+        %th= sortable 'budget', 'Budget' , { :filter => params['filter'] }
+        %th= sortable 'profit', 'Profit' , { :filter => params['filter'] }
+        %th= sortable 'hourly_rate', 'Hourly Rate', { :filter => params['filter'] }
+    
+    %tbody
+      - for project in @projects
+        %tr{ :class => "#{cycle(:odd, :even)} #{project.completed? ? 'completed' : ''}" }
+          %td.icon{:width => '20px'}
+            = check_box_tag "on_off_#{project.id}", project.turned_on?, project.turned_on?, :url => toggle_project_user_project_path(current_user, project, :filter => params['filter']), :class => 'project_on_off'
+          %td
+            = link_to project.title, [current_user, project], :class => 'bold_text'
+          %td
+            - if project.client.present?
+              = link_to project.client.name, [current_user, project.client]
+            - else
+              &mdash;
+          %td= project.started_on
+          %td= project.completed_on || 'in progress'
+          %td= number_to_currency(project.cached_budget)
+          %td
+            .project_status{:class => project.status}= number_to_currency project.profit, :precision => 2
+          %td= (project.personal_rate.infinite? || project.personal_rate.nan?) ? '&mdash;'.html_safe : number_to_currency(project.personal_rate, :precision => 2)
+    - rejected_projects = @projects.reject{|p| !p.turned_on?}
+    - if rejected_projects.size > 0
+      = render :partial => '/shared/projects_summary', :locals => { :rejected_projects => rejected_projects, :add_column => true }
+
+- else
+  %p
+    %strong List is empty.

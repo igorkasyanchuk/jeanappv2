@@ -1,0 +1,8 @@
+.own_hour{ :class => cycle(:odd, :even), :id => "own_hour-#{own_hour.id}" }
+  .own_hour_date
+    .date= own_hour.created_at.to_date.to_s(:short_date)
+    .time= own_hour.created_at.to_s(:time_12)
+  .hours_count= own_hour.hours_count
+  .description!= RedCloth.new(own_hour.description).to_html
+  .controls= link_to 'remove', [current_user, own_hour.project, own_hour], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+  .clear

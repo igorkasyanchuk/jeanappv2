@@ -1,0 +1,20 @@
+- content_for :on_ready do
+  == $('.admin_menu .#{controller_name}_menu').addClass('selected');
+    
+- content_for :css do
+  = stylesheet_link_tag 'admin'
+
+= inside_layout 'application' do
+  #admin.container
+    %ul.admin_menu
+      %li.projects_menu= link_to 'Projects', [current_user, :projects]
+      %li.clients_menu= link_to 'Clients', [current_user, :clients]
+      %li.people_menu= link_to 'Employees', [current_user, :people]
+      /%li.earnings_menu= link_to 'Earnings', [current_user, :earnings]
+      /%li.calendars_menu= link_to 'In / Out', [current_user, :calendars]
+      /%li.time_reports_menu= link_to 'Time Analize', [current_user, :time_reports]
+      /%li= link_to 'Report', admin_reports_path
+    %ul.admin_actions
+      %li= link_to 'Profile', edit_profile_path(current_user)
+      %li= link_to 'Sign out', user_session_path, :method => :delete
+  .container= yield

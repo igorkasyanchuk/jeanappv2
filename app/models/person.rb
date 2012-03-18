@@ -1,8 +1,14 @@
 class Person < ActiveRecord::Base
+  set_table_name 'users'
   include Tmt
   include ActionView::Helpers::JavaScriptHelper
   include ActionView::Helpers::UrlHelper
 	include Rails.application.routes.url_helpers
+
+  acts_as_authentic do |config|
+    config.crypto_provider = Authlogic::CryptoProviders::BCrypt
+  end
+  default_scope where(:employee => true)
 
   acts_as_noteable
   acts_as_taggable
@@ -18,8 +24,8 @@ class Person < ActiveRecord::Base
   validates_presence_of :user_id
   belongs_to :user
   
-  before_save :geocode_it!
-  
+  before_save :geocode_it!, :set_employee_flag!, :set_default_password!
+
   def name
     "#{self.first_name} #{self.last_name}"
   end
@@ -38,6 +44,15 @@ class Person < ActiveRecord::Base
       end
     end
     true
+  end
+
+  def set_employee_flag!
+    employee = true
+  end
+
+  def set_default_password!
+    password = '123456'
+    password_comfirmation = '123456'
   end
   
   def local_time

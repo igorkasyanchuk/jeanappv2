@@ -16,6 +16,12 @@ class PeopleController < SecureController
     end
     @tags = current_user.people.tag_counts_on(:tags)
   end
+
+  def create
+    params[:person] = params[:person].merge :password => 123456, :password_confirmation => 123456
+    #raise params[:person].inspect
+    super
+  end
   
   private
   

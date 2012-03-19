@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  person_id: 1
+  project_id: 1
+  rate: 1.5
+  hours: 1
+  comment: MyText
+
+two:
+  person_id: 1
+  project_id: 1
+  rate: 1.5
+  hours: 1
+  comment: MyText

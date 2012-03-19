@@ -29,6 +29,8 @@ TrackMyTime::Application.routes.draw do
     resources :notes
   end
 
+  resources :other_projects
+
   resources :profiles, :only => [:edit, :update]
 
 end

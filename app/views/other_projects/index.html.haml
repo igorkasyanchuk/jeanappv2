@@ -1,13 +1,11 @@
+#other_projects_container
 %ul
   - @projects.each do |project|
     %li
       = project.title
       %h3 Jobs
-      %ul#jobs
-        - project.jobs.each do |job|
-          %li
-            = job.hours
-            = job.rate
-            = job.comment
-            = job.state
+      %ul{:id => "jobs_#{project.id}"}
+        =render :partial => 'jobs/jobs', :locals => {:project => project}
       = render 'jobs/form', :project => project
+
+= @projects.inspect      

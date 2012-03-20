@@ -27,6 +27,10 @@
       = f.submit 'Add employee'
       = link_to 'Hide', '#', :class => 'hide cancel_button'
 
+%h2.left Collaborators
+.right.add= link_to 'Invite Collaborator', '#', :class => 'add_button'#, :to => '.staff_form'
+.clear
+= render :partial => '/people/collaborators', :locals => {:project => @project}
 
 %h2.left Own Hours
 .right.add= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'

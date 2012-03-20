@@ -6,6 +6,7 @@ class CreateJobs < ActiveRecord::Migration
       t.float :rate
       t.integer :hours
       t.text :comment
+      t.string :state, :default => 'pending'
 
       t.timestamps
     end

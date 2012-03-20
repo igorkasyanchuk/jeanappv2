@@ -23,6 +23,8 @@ class Project < ActiveRecord::Base
   
   has_many :own_hours, :dependent => :destroy
   accepts_nested_attributes_for :own_hours
+
+  has_many :jobs
   
   scope :by_title, order(:title)
   scope :in_progress, where('started_on is not NULL and completed_on is NULL')

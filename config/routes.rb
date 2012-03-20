@@ -30,6 +30,7 @@ TrackMyTime::Application.routes.draw do
   end
 
   resources :other_projects
+  resources :jobs
 
   resources :profiles, :only => [:edit, :update]
 

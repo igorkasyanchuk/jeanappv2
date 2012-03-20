@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
   acts_as_authentic do |config|
     config.crypto_provider = Authlogic::CryptoProviders::BCrypt
   end
-  default_scope where(:employee => true)
+  #default_scope where(:employee => true)
 
   acts_as_noteable
   acts_as_taggable

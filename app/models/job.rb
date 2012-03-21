@@ -5,6 +5,9 @@ class Job < ActiveRecord::Base
 
   attr_protected :state
 
+  validates_presence_of :hours
+  validates_presence_of :comment
+
   before_save :cache_rates
 
   def cost

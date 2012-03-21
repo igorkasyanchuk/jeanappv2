@@ -13,6 +13,7 @@ class ProjectStaff < ActiveRecord::Base
   scope :by_projects, lambda { |projects| where(:project_id => projects) }
   
   before_save :set_rate
+  after_destroy :clear_persons_jobs
   
   def set_rate
     self.hourly_rate = self.person.hourly_rate
@@ -20,6 +21,10 @@ class ProjectStaff < ActiveRecord::Base
 
   def amount
     self.hours_count * self.hourly_rate
+  end
+
+  def clear_persons_jobs
+    person.jons_on(project).destroy_all
   end
 
 end

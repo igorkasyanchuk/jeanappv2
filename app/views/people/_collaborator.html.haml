@@ -8,14 +8,21 @@
   -#.hours_count= staff.hours_count
   -#.amount= number_to_currency(staff.amount, :precision => 2)
   -# raise staff.person.jobs_on(@project).inspect
-  %ul.jobs
+  %table.jobs
+    %tr
+      %th hours
+      %th rate
+      %th cost
+      %th comment
+      %th state
     - staff.person.jobs_on(@project).each do |job|
-      %li
-        = job.hours
-        = job.rate
-        = job.comment
-        = job.state
+      %tr
+        %td= job.hours
+        %td= job.rate
+        %td= job.cost
+        %td= job.comment
+        %td= job.state
 
-
+  .new_job= render 'jobs/form', :project => @project, :user => staff.person
   .controls= link_to 'remove', [current_user, staff.project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
   .clear

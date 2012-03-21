@@ -2,7 +2,7 @@ class JobsController < SecureController
   #belongs_to :project
   
   def create
-    create! do |format|
+    create!  do |format|
       format.js {}
     end
   end

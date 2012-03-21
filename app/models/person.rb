@@ -15,6 +15,7 @@ class Person < ActiveRecord::Base
   
   has_many :project_staffs, :dependent => :destroy
   has_many :projects, :through => :project_staffs, :uniq => true
+  has_many :jobs
   
   validates_presence_of :email
   validates_presence_of :first_name
@@ -83,6 +84,10 @@ class Person < ActiveRecord::Base
       _projects += 1 unless p.completed?
     end
     _projects
+  end
+
+  def jobs_on project
+    jobs.where :project_id => project
   end
   
 end

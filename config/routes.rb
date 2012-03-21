@@ -17,6 +17,7 @@ TrackMyTime::Application.routes.draw do
         get :projects
       end
     end
+    resources :other_projects, :controller => 'other_projects'
     resources :projects do
       member do
         get :toggle_project
@@ -30,7 +31,7 @@ TrackMyTime::Application.routes.draw do
     resources :notes
   end
 
-  resources :other_projects
+
   resources :jobs
 
   resources :profiles, :only => [:edit, :update]

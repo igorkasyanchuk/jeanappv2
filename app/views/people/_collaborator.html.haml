@@ -1,0 +1,28 @@
+.person{ :class => cycle(:odd, :even), :id => "staff-#{staff.id}" }
+  -#.person_date
+    .date= staff.created_at.to_date.to_s(:short_date)
+    .time= staff.created_at.to_s(:time_12)
+  - raise staff.inspect if staff.person.nil?
+  .person_name= link_to staff.person.name, [current_user, staff.person]
+  .person_description!= RedCloth.new(staff.description).to_html
+  -#.hours_count= staff.hours_count
+  -#.amount= number_to_currency(staff.amount, :precision => 2)
+  -# raise staff.person.jobs_on(@project).inspect
+  %table.jobs
+    %tr
+      %th hours
+      %th rate
+      %th cost
+      %th comment
+      %th state
+    - staff.person.jobs_on(@project).each do |job|
+      %tr
+        %td= job.hours
+        %td= job.rate
+        %td= job.cost
+        %td= job.comment
+        %td= job.state
+
+  .new_job= render 'jobs/form', :project => @project, :user => staff.person
+  .controls= link_to 'remove', [current_user, staff.project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+  .clear

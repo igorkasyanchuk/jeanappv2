@@ -1,0 +1,7 @@
+- project.jobs.each do |job|
+  %li{:id => "job_#{job.id}"}
+    = job.hours
+    = job.rate
+    = job.comment
+    = job.state
+    = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'

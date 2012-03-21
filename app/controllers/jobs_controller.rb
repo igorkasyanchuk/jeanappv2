@@ -8,7 +8,7 @@ class JobsController < SecureController
   end
   
   def destroy
-    destroy! do |format|
+     destroy!  do |format|
       format.js {}
     end
   end

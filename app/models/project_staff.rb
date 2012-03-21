@@ -1,9 +1,9 @@
 class ProjectStaff < ActiveRecord::Base
   belongs_to :project
   belongs_to :person
-  validates_presence_of :description
-  validates_presence_of :hours_count
-  validates_numericality_of :hours_count
+  #validates_presence_of :description
+  #validates_presence_of :hours_count
+  #validates_numericality_of :hours_count
   
   scope :forward,  order('project_staffs.created_at ASC')
   scope :backward, order('project_staffs.created_at DESC')

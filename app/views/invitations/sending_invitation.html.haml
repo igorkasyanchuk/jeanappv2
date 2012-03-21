@@ -1,0 +1,4 @@
+%p
+  "Hello #{@inv.first_name}, #{@inv.last_name}! You are invited to participate in ProjectName with rate #{@inv.rate}.
+  Click on this if you agree to take part in this project."
+= link_to "invitation submit", confirm_invitation_url(@inv.key)

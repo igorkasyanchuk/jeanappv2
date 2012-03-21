@@ -19,6 +19,7 @@ class Project < ActiveRecord::Base
   
   has_many :project_staffs, :dependent => :destroy
   has_many :people, :through => :project_staffs, :uniq => true
+  has_many :invitations
   accepts_nested_attributes_for :project_staffs
   
   has_many :own_hours, :dependent => :destroy

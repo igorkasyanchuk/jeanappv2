@@ -11,6 +11,19 @@
 
 = simple_format @project.description unless @project.description.blank?
 
+%hr
+= semantic_form_for [current_user, @project, @project.invitations.build], :html => { :class => 'invitation_form' } do |f|  
+  = f.inputs do
+    = f.input :project_id, :as => :hidden, :input_html => {:value => @project.id}
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :rate
+    = f.input :email
+  = f.buttons do
+    = f.submit 'Send Invitation'
+%hr
+
+
 #info= render :partial => '/projects/info', :locals => { :project => @project }
 
 %h2.left Employees

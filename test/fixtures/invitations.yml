@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  project_id: 1
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  rate: 1.5
+  key: MyString
+  expires_at: 2012-03-20 13:07:29
+
+two:
+  project_id: 1
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  rate: 1.5
+  key: MyString
+  expires_at: 2012-03-20 13:07:29

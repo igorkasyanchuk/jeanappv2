@@ -25,6 +25,7 @@ TrackMyTime::Application.routes.draw do
       resources :invoices
       resources :project_staffs
       resources :own_hours
+      resources :invitations
     end
     resources :notes
   end
@@ -33,5 +34,6 @@ TrackMyTime::Application.routes.draw do
   resources :jobs
 
   resources :profiles, :only => [:edit, :update]
-
+  match "/invitations/confirm/:key", :to => "invitations#confirm", :as => "confirm_invitation"
+  
 end

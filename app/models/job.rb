@@ -14,6 +14,46 @@ class Job < ActiveRecord::Base
     @cost ||= rate * hours
   end
 
+  def unupprove
+    update_attribute :state, 'pending' if approved?
+  end
+
+  def approve
+    update_attribute :state, 'approved' if pending? || payed?
+  end
+
+  def pay
+    update_attribute :state, 'payed' if approved?
+  end
+
+  def next_state
+    if pending?
+      approve
+    elsif approved?
+      pay
+    else
+      false
+    end
+  end
+
+  def prev_state
+    if payed?
+      approve
+    elsif approved?
+      unupprove
+    else
+      false
+    end
+  end
+
+
+
+  %w{pending approved payed}.each do |state_value|
+    define_method "#{state_value}?" do
+      state == state_value
+    end
+  end
+
 private
 
   def cache_rates

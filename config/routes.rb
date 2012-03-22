@@ -32,7 +32,12 @@ TrackMyTime::Application.routes.draw do
   end
 
 
-  resources :jobs
+  resources :jobs do
+    member do
+      put :next_state
+      put :prev_state
+    end
+  end
 
   resources :profiles, :only => [:edit, :update]
   match "/invitations/confirm/:key", :to => "invitations#confirm", :as => "confirm_invitation"

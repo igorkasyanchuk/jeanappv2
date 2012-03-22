@@ -20,5 +20,17 @@ class JobsController < SecureController
       format.js {}
     end
   end
+
+  def next_state
+    @project = current_user.projects.find params[:project_id]
+    @job = @project.jobs.find params[:id]
+    @job.next_state
+  end
+
+  def prev_state
+    @project = current_user.projects.find params[:project_id]
+    @job = @project.jobs.find params[:id]
+    @job.prev_state
+  end
   
 end

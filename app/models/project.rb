@@ -63,11 +63,11 @@ class Project < ActiveRecord::Base
   end
   
   def hours_total
-    self.project_staffs.inject(0) {|sum, e| sum += e.hours_count }
+    self.jobs.inject(0) {|sum, e| sum += e.hours }
   end
   
   def amount_total
-    self.project_staffs.inject(0) {|sum, e| sum += e.amount }
+    self.jobs.inject(0) {|sum, e| sum += e.cost }
   end
   
   def invoiced

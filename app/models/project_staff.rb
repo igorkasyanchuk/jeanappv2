@@ -12,7 +12,7 @@ class ProjectStaff < ActiveRecord::Base
   scope :by_date, lambda { |date| where(['date(created_at) = date(?)', date])}
   scope :by_projects, lambda { |projects| where(:project_id => projects) }
   
-  before_save :set_rate
+  #before_save :set_rate
   after_destroy :clear_persons_jobs
   
   def set_rate

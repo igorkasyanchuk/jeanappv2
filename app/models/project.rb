@@ -91,11 +91,17 @@ class Project < ActiveRecord::Base
   end
   
   def total_hours_by_person(p)
-    self.project_staffs.where(:person_id => p).inject(0) {|sum, e| sum += e.hours_count }
+    #self.project_staffs.where(:person_id => p).inject(0) {|sum, e| sum += e.person.hours }
+    self.jobs_by(p).inject(0) {|sum, e| sum += e.hours }
+  end
+
+  def jobs_by person
+    jobs.where :person_id => p
   end
 
   def total_money_by_person(p)
-    self.project_staffs.where(:person_id => p).inject(0) {|sum, e| sum += e.amount }
+    #self.project_staffs.where(:person_id => p).inject(0) {|sum, e| sum += e.person.cost }
+    self.jobs_by(p).inject(0) {|sum, e| sum += e.cost }
   end
   
   def project_length

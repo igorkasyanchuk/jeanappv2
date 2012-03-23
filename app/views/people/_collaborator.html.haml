@@ -2,12 +2,8 @@
   -#.person_date
     .date= staff.created_at.to_date.to_s(:short_date)
     .time= staff.created_at.to_s(:time_12)
-  - raise staff.inspect if staff.person.nil?
   .person_name= link_to staff.person.name, [current_user, staff.person]
   .person_description!= RedCloth.new(staff.description).to_html
-  -#.hours_count= staff.hours_count
-  -#.amount= number_to_currency(staff.amount, :precision => 2)
-  -# raise staff.person.jobs_on(@project).inspect
   %table.jobs
     %tr
       %th hours

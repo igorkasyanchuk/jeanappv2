@@ -17,9 +17,8 @@ class Invitation < ActiveRecord::Base
   end
 
   def confirm_inv
-    @user = User.create(:email => self.email, :password => '123456', :password_confirmation => '123456', :first_name => self.first_name, :last_name => self.last_name, :address => "Your City")
-    ProjectStaff.create(:person_id => @user.id, :project_id => self.project_id, :hourly_rate => self.rate)
-    redirect_to root_url
+    @user = User.create(:user_id => project.user_id, :email => self.email, :password => '123456', :password_confirmation => '123456', :first_name => self.first_name, :last_name => self.last_name, :address => "Your City", :description => '', :hourly_rate => self.rate)
+    ProjectStaff.create(:person_id => @user.id, :project_id => self.project_id, :description => '')
   end
 
 

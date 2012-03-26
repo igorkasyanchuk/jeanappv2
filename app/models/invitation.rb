@@ -3,6 +3,8 @@ class Invitation < ActiveRecord::Base
   belongs_to :project
   before_save :generate_key
   after_save :send_email
+  validates :email, :presence => true
+  #validates :rate, :numericality => true
 
   def generate_key    
     k = []

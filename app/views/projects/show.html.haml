@@ -13,9 +13,10 @@
 
 %hr
 %h2 Invite Employee
-= semantic_form_for [current_user, @project, @project.invitations.build], :html => { :class => 'invitation_form' } do |f|  
+= semantic_form_for [current_user, @project, @project.invitations.build], :html => { :class => 'invitation_form' } do |f|
   = f.inputs do
     = f.input :project_id, :as => :hidden, :input_html => {:value => @project.id}
+    = f.input :expires_at, :as => :hidden, :input_html => {:value => Time.now + 14.days}
     = f.input :first_name
     = f.input :last_name
     = f.input :rate

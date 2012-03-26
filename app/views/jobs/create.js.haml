@@ -1,4 +1,9 @@
-$e = "#{escape_javascript(render :partial => 'jobs', :locals => {:project => @job.project})}"
+-if request.referer.include? user_other_projects_path(current_user)
+  $e = "#{escape_javascript(render :partial => 'jobs', :locals => {:project => @job.project})}"
 
-== $('#jobs_#{@job.project.id}').html($e);
+  == $('#jobs_#{@job.project.id}').html($e);
 
+-elsif request.referer.include? user_projects_path(current_user)  
+
+  $e = "#{escape_javascript(render :partial => '/people/staffs', :locals => { :project => @project })}"
+  == $('.staff').html($e);

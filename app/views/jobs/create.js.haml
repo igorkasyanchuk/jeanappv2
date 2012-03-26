@@ -7,3 +7,6 @@
 
   $e = "#{escape_javascript(render :partial => '/people/staffs', :locals => { :project => @project })}"
   == $('.staff').html($e);
+  =update_project_details(@project)
+  =refresh_diagram(@project)
+  =clear_fields

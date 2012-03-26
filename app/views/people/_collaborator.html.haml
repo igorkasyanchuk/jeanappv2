@@ -11,6 +11,7 @@
       %th cost
       %th comment
       %th state
+      %th action
     - staff.person.jobs_on(@project).each do |job|
       %tr
         %td= job.hours
@@ -18,6 +19,16 @@
         %td= job.cost
         %td= job.comment
         %td= job.state
+        -if job.state == "pending"
+          %td= link_to "Approve", approves_job_path(:project_id => job.project_id, :id => job.id, :status => 1), :remote => 'true'   
+        -elsif job.state == "approved"  
+          %td
+            = link_to "Pay", approves_job_path(:project_id => job.project_id, :id => job.id, :status => 0), :remote => 'true'
+            |
+            = link_to "un approve", approves_job_path(:project_id => job.project_id, :id => job.id, :status => -1), :remote => 'true'
+
+        -else  
+          %td
 
   .new_job= render 'jobs/form', :project => @project, :user => staff.person
   .controls= link_to 'remove', [current_user, staff.project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'

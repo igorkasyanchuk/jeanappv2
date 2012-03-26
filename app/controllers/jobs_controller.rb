@@ -32,5 +32,19 @@ class JobsController < SecureController
     @job = @project.jobs.find params[:id]
     @job.prev_state
   end
+
+  def approves
+    @project = current_user.projects.find params[:project_id]
+    @job = @project.jobs.find params[:id]
+    if params[:status] == '1'
+      @job.approve
+    elsif params[:status] == '-1'
+      @job.unupprove
+    elsif params[:status] == '0'
+      @job.pay
+    end
+    render :create, :format => :js
+
+  end  
   
 end

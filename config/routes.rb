@@ -34,6 +34,7 @@ TrackMyTime::Application.routes.draw do
 
   resources :jobs do
     member do
+      get :approves
       put :next_state
       put :prev_state
     end

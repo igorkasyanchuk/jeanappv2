@@ -1,0 +1,4 @@
+$e = "#{escape_javascript(render :partial => 'jobs', :locals => {:project => @job.project})}"
+
+== $('#jobs_#{@job.project.id}').html($e);
+

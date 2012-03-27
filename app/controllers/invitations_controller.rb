@@ -24,7 +24,7 @@ class InvitationsController < SecureController
     else    
       respond_to do |format|        
         if @invitation.save
-          flash.now[:notice] = 'Invitation was successfully sent!'
+          flash[:notice] = 'Invitation was successfully sent!'
           format.html { redirect_to user_project_path(current_user, @invitation.project_id) }
         else
           flash[:notice] = 'You must enter email address'

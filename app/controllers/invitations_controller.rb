@@ -4,8 +4,6 @@ class InvitationsController < SecureController
 
   def confirm
     @invitation = Invitation.find_by_key(params[:key])
-    #@Invitation.confirm_inv
-    #redirect_to root_url
     if @invitation.expires_at >= Time.now
       @invitation.confirm_inv
       flash[:notice] = 'Invitation was successfully accepted!'
@@ -34,7 +32,7 @@ class InvitationsController < SecureController
           flash[:notice] = 'Invitation was successfully sent!'
           format.html { redirect_to user_project_path(current_user, @invitation.project_id) }
         else
-          flash[:notice] = @invitation.errors
+          flash[:notice] = @invitation.errors.full_messages.first
           format.html { redirect_to user_project_path(current_user, @invitation.project_id) }
         end
       end

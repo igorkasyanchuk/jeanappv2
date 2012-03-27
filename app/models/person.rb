@@ -22,8 +22,9 @@ class Person < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :hourly_rate
   
-  validates_presence_of :user_id
-  belongs_to :user
+  #validates_presence_of :user_id
+  #belongs_to :user
+  has_and_belongs_to_many :users
   
   before_save :geocode_it!, :set_employee_flag!, :set_default_password!
 

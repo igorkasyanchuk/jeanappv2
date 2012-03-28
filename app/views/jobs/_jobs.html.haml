@@ -1,7 +1,17 @@
-- project.jobs.each do |job|
-  %li{:id => "job_#{job.id}"}
-    = job.hours
-    = job.rate
-    = job.comment
-    = job.state
-    = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'
+%table.jobs
+  %tr
+    %th created at
+    %th hours
+    %th rate
+    %th comment
+    %th state
+    %th action
+  - project.jobs.each do |job|
+    %tr{:id => "job_#{job.id}"}
+      %td= job.created_at.try :strftime, '%Y %d %h %T' 
+      %td= job.hours
+      %td= job.rate
+      %td= job.comment
+      %td= job.state
+      %td= link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'
+

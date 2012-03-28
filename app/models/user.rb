@@ -82,4 +82,8 @@ class User < ActiveRecord::Base
     [mine, contractors]
   end
 
+  def as_person
+    becomes Person
+  end
+
 end

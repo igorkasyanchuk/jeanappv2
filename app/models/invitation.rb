@@ -29,7 +29,7 @@ class Invitation < ActiveRecord::Base
   def confirm_inv
     @project_owner = User.find project.user_id
     @user = User.create(:email => self.email, :password => self.password, :password_confirmation => self.password, :first_name => self.first_name, :last_name => self.last_name, :address => "Your City", :description => '', :hourly_rate => self.rate)
-    @project_owner.people << Person.find(@user.id)
+    @project_owner.people << @user.as_person
     ProjectStaff.create(:person_id => @user.id, :project_id => self.project_id, :description => '')
   end
 

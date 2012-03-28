@@ -91,5 +91,9 @@ class Person < ActiveRecord::Base
   def jobs_on project
     jobs.where :project_id => project
   end
+
+  def as_user
+    becomes User
+  end
   
 end

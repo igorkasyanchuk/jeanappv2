@@ -1,4 +1,4 @@
-- project.jobs.each do |job|
+- project.jobs_by(current_user).each do |job|
   %li{:id => "job_#{job.id}"}
     = job.hours
     = job.rate

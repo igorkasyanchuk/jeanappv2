@@ -90,13 +90,13 @@ class Project < ActiveRecord::Base
     self.completed_on.present?
   end
   
+  def jobs_by person
+    jobs.where :person_id => p
+  end
+
   def total_hours_by_person(p)
     #self.project_staffs.where(:person_id => p).inject(0) {|sum, e| sum += e.person.hours }
     self.jobs_by(p).inject(0) {|sum, e| sum += e.hours }
-  end
-
-  def jobs_by person
-    jobs.where :person_id => p
   end
 
   def total_money_by_person(p)

@@ -4,14 +4,20 @@ class InvitationsController < SecureController
 
   def confirm
     @invitation = Invitation.find_by_key(params[:key])
-    if @invitation.expires_at >= Time.now
-      @invitation.confirm_inv
-      flash[:notice] = 'Invitation was successfully accepted!'
+    if @invitation.present?
+      if @invitation.actual?
+        @invitation.confirm
+        flash[:notice] = 'Invitation was successfully accepted!'
+      else
+        @invitation.destroy
+        flash[:notice] = 'Invitation is not actual.'
+      end
       redirect_to root_url
     else
       flash[:notice] = 'Invitation was expired!'
       redirect_to root_url
     end
+
     
   end
 

@@ -95,5 +95,13 @@ class Person < ActiveRecord::Base
   def as_user
     becomes User
   end
+
+  def total_hours_on project
+    self.jobs_on(project).inject(0) {|sum, e| sum += e.hours }
+  end
+
+  def total_money_on project
+    self.jobs_on(project).inject(0) {|sum, e| sum += e.cost }
+  end
   
 end

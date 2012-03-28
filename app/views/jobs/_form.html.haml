@@ -1,10 +1,11 @@
-= semantic_form_for Job.new, :remote => true do |f|
-  - f.inputs do
-    = f.hidden_field :person_id, :value => user.id
-    = f.hidden_field :project_id, :value => project.id
-    = f.input :hours
-    = f.input :comment
-  - f.buttons do
-    = f.submit 'Log work'
+.add_more_block
+  = semantic_form_for Job.new, :remote => true do |f|
+    - f.inputs do
+      = f.hidden_field :person_id, :value => user.id
+      = f.hidden_field :project_id, :value => project.id
+      = f.input :hours
+      = f.input :comment, :input_html => { :rows => '2', :cols => '40' }
+    - f.buttons do
+      = f.submit 'Log work'
 
 

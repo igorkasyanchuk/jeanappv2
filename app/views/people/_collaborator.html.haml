@@ -6,6 +6,7 @@
   .person_description!= RedCloth.new(staff.description).to_html
   %table.jobs
     %tr
+      %th started at
       %th hours
       %th rate
       %th cost
@@ -14,9 +15,10 @@
       %th action
     - staff.person.jobs_on(@project).each do |job|
       %tr
+        %td= job.created_at.try :strftime, '%Y %d %h %T' 
         %td= job.hours
         %td= job.rate
-        %td= job.cost
+        %td= "$#{job.cost}"
         %td= job.comment
         %td= job.state
         -if job.state == "pending"
@@ -25,10 +27,19 @@
           %td
             = link_to "Pay", approves_job_path(:project_id => job.project_id, :id => job.id, :status => 0), :remote => 'true'
             |
-            = link_to "un approve", approves_job_path(:project_id => job.project_id, :id => job.id, :status => -1), :remote => 'true'
+            = link_to "un approve", approves_job_path(:project_id => job.project_id, :id => job.id, :status => -1), :remote => 'true'  
 
         -else  
           %td
+    %tr
+      %td totals
+      %td= staff.person.total_hours_on @project
+      %td
+      %td= "$#{staff.person.total_money_on @project}"
+      %td
+      %td
+      %td
+
 
   .new_job= render 'jobs/form', :project => @project, :user => staff.person
   .controls= link_to 'remove', [current_user, staff.project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'

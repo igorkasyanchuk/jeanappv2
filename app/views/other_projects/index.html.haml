@@ -1,11 +1,10 @@
 #other_projects_container
-%ul
+
   - @projects.each do |project|
-    %li
-      = project.title
-      %h3 Jobs
-      %ul{:id => "jobs_#{project.id}"}
-        =render :partial => 'jobs/jobs', :locals => {:project => project}
-      = render 'jobs/form', :project => project, :user => current_user
+    %h2= project.title
+    %h3.left Jobs
+    .jobs{:id => "jobs_#{project.id}"}
+      =render :partial => 'jobs/jobs', :locals => {:project => project}
+    = render 'jobs/form', :project => project, :user => current_user
 
  

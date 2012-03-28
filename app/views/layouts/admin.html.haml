@@ -10,7 +10,7 @@
       %li.projects_menu= link_to 'Projects', [current_user, :projects]
       %li.clients_menu= link_to 'Clients', [current_user, :clients]
       %li.people_menu= link_to 'Employees', [current_user, :people]
-      %li.people_menu= link_to 'Other projects', user_other_projects_path#[current_user, :people]
+      %li.people_menu= link_to 'Other projects', [current_user, :other_projects]
       /%li.earnings_menu= link_to 'Earnings', [current_user, :earnings]
       /%li.calendars_menu= link_to 'In / Out', [current_user, :calendars]
       /%li.time_reports_menu= link_to 'Time Analize', [current_user, :time_reports]

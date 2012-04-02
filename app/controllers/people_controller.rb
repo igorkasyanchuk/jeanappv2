@@ -21,6 +21,7 @@ class PeopleController < SecureController
     params[:person] = params[:person].merge :password => 123456, :password_confirmation => 123456
     #raise params[:person].inspect
     super
+    @person.users << current_user unless @person.new_record?
   end
   
   private

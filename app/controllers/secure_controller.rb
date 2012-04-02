@@ -32,7 +32,7 @@ EOF
     
     def update_project_details(project)
       script =<<EOF
-        $ee = "#{escape_javascript(render :partial => '/projects/info', :locals => { :project => project })}";
+        $ee = "#{escape_javascript((render '/projects/_info', :locals => {:project => project}).join)}";
         $('#info').html($ee);
         show_money_chart(#{@project.money_chart.to_json});
         show_time_chart(#{@project.time_chart.to_json});

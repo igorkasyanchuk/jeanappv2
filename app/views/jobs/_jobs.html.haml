@@ -12,9 +12,10 @@
       %td= job.created_at.try :strftime, '%Y %d %h %T' 
       %td= job.hours
       %td= job.rate
-      %td= "$#{job.cost}"
+      %td= "$#{job.try(:cost)}"
       %td= job.comment
-      %td= job.state
+      %td{ :class => "#{job.state}_status"} 
+        = job.state
       %td= link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'
   %tr
     %td totals:

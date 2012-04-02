@@ -24,3 +24,4 @@
           = link_to "Pay", approves_job_path(:project_id => project, :id => job, :status => 0), :remote => 'true'
           |
           = link_to "un approve", approves_job_path(:project_id => project, :id => job, :status => -1), :remote => 'true'
+      = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'

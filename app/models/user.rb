@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation, :if => :require_password?
   
   #has_many :people, :dependent => :destroy
-  has_and_belongs_to_many :people
+  has_and_belongs_to_many :people, :uniq => true
 
   has_many :projects, :dependent => :destroy
   has_many :clients, :dependent => :destroy

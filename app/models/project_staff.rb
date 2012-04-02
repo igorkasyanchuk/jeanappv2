@@ -24,7 +24,7 @@ class ProjectStaff < ActiveRecord::Base
   end
 
   def clear_persons_jobs
-    person.jons_on(project).destroy_all
+    person.jobs_on(project).destroy_all
   end
 
 end

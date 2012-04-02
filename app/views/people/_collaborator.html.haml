@@ -20,7 +20,8 @@
         %td= job.rate
         %td= "$#{job.cost}"
         %td= job.comment
-        %td= job.state
+        %td{ :class => "#{job.state}_status"} 
+          = job.state
         -if job.state == "pending"
           %td= link_to "Approve", approves_job_path(:project_id => job.project_id, :id => job.id, :status => 1), :remote => 'true'   
         -elsif job.state == "approved"  

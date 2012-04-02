@@ -19,11 +19,11 @@ class Job < ActiveRecord::Base
   end
 
   def approve
-    update_attribute :state, 'approved' if pending? || payed?
+    update_attribute :state, 'approved' if pending? || paid?
   end
 
   def pay
-    update_attribute :state, 'payed' if approved?
+    update_attribute :state, 'paid' if approved?
   end
 
   def next_state
@@ -48,7 +48,7 @@ class Job < ActiveRecord::Base
 
 
 
-  %w{pending approved payed}.each do |state_value|
+  %w{pending approved paid}.each do |state_value|
     define_method "#{state_value}?" do
       state == state_value
     end

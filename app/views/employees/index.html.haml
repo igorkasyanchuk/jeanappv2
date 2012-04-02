@@ -1,0 +1,53 @@
+= link_to 'Back to project', [current_user, @project]
+
+%h2.left Employees
+.right.add= link_to 'Add Employee', '#', :class => 'add_button', :to => '.staff_form'
+.clear
+
+.staff
+  - if @project.project_staffs.count > 0
+    .person
+      .person_name 
+        %strong Person
+      .person_description
+        %strong Description
+      .hours_count
+        %strong Hours
+      .amount
+        %strong Money
+      .controls 
+        %strong Actions
+      .clear  
+    - @project.project_staffs.backward.each do |staff|
+      = render :partial => '/people/staff', :locals => { :staff => staff, :project => @project }
+  - else
+    .staff_list_is_empty
+      %i List is empty. Add Employees.
+
+
+.add_more_block
+  = semantic_form_for [current_user, @project, @project.project_staffs.build], :remote => true, :html => { :class => 'none staff_form' } do |f|
+    = f.inputs do
+      = f.input :person, :as => :select, :include_blank => false, :collection => current_user.people.collect{|p| [ "#{p.name} (#{number_to_currency(p.hourly_rate, :precision => 2)}/hour)", p.id ] }
+      -#= f.input :hours_count
+      = f.input :description, :input_html => { :rows => '2', :cols => '40' }
+    = f.buttons do
+      = f.submit 'Add employee'
+      = link_to 'Hide', '#', :class => 'hide cancel_button'
+
+%hr
+%h2 Invite Employee
+= semantic_form_for [current_user, @project, @project.invitations.build], :html => { :class => 'invitation_form' } do |f|
+  = f.inputs do
+    = f.input :project_id, :as => :hidden, :input_html => {:value => @project.id}
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :rate
+    = f.input :email
+  = f.buttons do
+    = f.submit 'Send Invitation'
+
+- content_for :on_ready do
+  init_add_form();
+  //init_add_invoice();
+  //init_project_show_page();

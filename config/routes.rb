@@ -31,6 +31,10 @@ TrackMyTime::Application.routes.draw do
     resources :notes
   end
 
+  resources :projects, :only => :index do
+    resources :employees, :only => :index
+  end
+
 
   resources :jobs do
     member do

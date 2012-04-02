@@ -6,7 +6,7 @@
 
 -elsif request.referer.include? user_projects_path(current_user)  
 
-  $e = "#{escape_javascript(render :partial => '/people/staffs', :locals => { :project => @project })}"
+  $e = "#{escape_javascript(render :partial => 'jobs', :locals => { :project => @project })}"
   == $('.staff').html($e);
   =update_project_details(@project)
   =refresh_diagram(@project)

@@ -245,44 +245,46 @@ ul.admin_actions li {
 /* line 313, ../../app/stylesheets/admin.sass */
 .staff .person .person_description {
   float: left;
-  width: 28%;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 21px;
 }
-/* line 319, ../../app/stylesheets/admin.sass */
+/* line 323, ../../app/stylesheets/admin.sass */
 .staff .person .state {
   float: left;
   width: 6%;
 }
-/* line 325, ../../app/stylesheets/admin.sass */
+/* line 329, ../../app/stylesheets/admin.sass */
 .staff .person .controls {
   float: left;
   width: 20%;
 }
-/* line 331, ../../app/stylesheets/admin.sass */
-.staff .person .controls a {
-  margin-left: 5px;
-}
 /* line 335, ../../app/stylesheets/admin.sass */
+.staff .person .controls a {
+  margin-right: 5px;
+}
+/* line 339, ../../app/stylesheets/admin.sass */
 .staff .person .hours_count {
   float: left;
   width: 6%;
 }
-/* line 341, ../../app/stylesheets/admin.sass */
+/* line 345, ../../app/stylesheets/admin.sass */
 .staff .person .amount {
   float: left;
   width: 10%;
 }
-/* line 347, ../../app/stylesheets/admin.sass */
+/* line 351, ../../app/stylesheets/admin.sass */
 .staff .person .hourly_rate {
   float: left;
   width: 15%;
 }
-/* line 353, ../../app/stylesheets/admin.sass */
+/* line 357, ../../app/stylesheets/admin.sass */
 .staff .person .hours_total {
   margin-left: 24%;
   width: 15%;
 }
 
-/* line 361, ../../app/stylesheets/admin.sass */
+/* line 365, ../../app/stylesheets/admin.sass */
 .add {
   font-size: 1.4em;
   font-weight: bold;
@@ -294,7 +296,7 @@ ul.admin_actions li {
   -webkit-border-radius: 12px;
 }
 
-/* line 381, ../../app/stylesheets/admin.sass */
+/* line 385, ../../app/stylesheets/admin.sass */
 .action_block {
   font-size: 1.4em;
   font-weight: bold;
@@ -304,7 +306,7 @@ ul.admin_actions li {
   -webkit-border-radius: 12px;
 }
 
-/* line 397, ../../app/stylesheets/admin.sass */
+/* line 401, ../../app/stylesheets/admin.sass */
 span.info {
   display: inline-block;
   margin-top: 3px;
@@ -317,74 +319,74 @@ span.info {
   -webkit-border-radius: 2px;
 }
 
-/* line 421, ../../app/stylesheets/admin.sass */
+/* line 425, ../../app/stylesheets/admin.sass */
 table.projects tr td, table.projects tr th {
   padding: 6px 4px;
 }
 
-/* line 427, ../../app/stylesheets/admin.sass */
+/* line 431, ../../app/stylesheets/admin.sass */
 .summary {
   background: #ececec;
   font-style: italic;
 }
 
-/* line 435, ../../app/stylesheets/admin.sass */
+/* line 439, ../../app/stylesheets/admin.sass */
 .project_status {
   padding: 2px 4px;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
-/* line 443, ../../app/stylesheets/admin.sass */
+/* line 447, ../../app/stylesheets/admin.sass */
 .project_status.red {
   background: red;
   color: white;
 }
-/* line 449, ../../app/stylesheets/admin.sass */
+/* line 453, ../../app/stylesheets/admin.sass */
 .project_status.green {
   background: green;
   color: white;
 }
-/* line 455, ../../app/stylesheets/admin.sass */
+/* line 459, ../../app/stylesheets/admin.sass */
 .project_status.yellow {
   background: yellow;
   color: black;
 }
 
-/* line 463, ../../app/stylesheets/admin.sass */
+/* line 467, ../../app/stylesheets/admin.sass */
 #chart_div {
   -moz-border-radius: 10px 10px 10px 10px;
   border: 2px solid white;
   margin: 0px auto auto;
 }
 
-/* line 473, ../../app/stylesheets/admin.sass */
+/* line 477, ../../app/stylesheets/admin.sass */
 table.table_layout {
   padding: 0;
   margin: 0;
   border: 0;
   overflow: hidden;
 }
-/* line 483, ../../app/stylesheets/admin.sass */
+/* line 487, ../../app/stylesheets/admin.sass */
 table.table_layout tr td {
   vertical-align: top;
 }
 
-/* line 489, ../../app/stylesheets/admin.sass */
+/* line 493, ../../app/stylesheets/admin.sass */
 #chart_table {
   width: 100%;
   height: 470px;
 }
-/* line 495, ../../app/stylesheets/admin.sass */
+/* line 499, ../../app/stylesheets/admin.sass */
 #chart_table .annotatedtimelinetable {
   border: 0 none;
 }
 
-/* line 501, ../../app/stylesheets/admin.sass */
+/* line 505, ../../app/stylesheets/admin.sass */
 .inline {
   display: inline;
 }
 
-/* line 507, ../../app/stylesheets/admin.sass */
+/* line 511, ../../app/stylesheets/admin.sass */
 .legend {
   font-size: 12px;
   color: #999999;

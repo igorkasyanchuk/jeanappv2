@@ -57,6 +57,6 @@ class Job < ActiveRecord::Base
 private
 
   def cache_rates
-    self.rate = person.hourly_rate
+    self.rate ||= person.hourly_rate
   end
 end

@@ -1,4 +1,18 @@
+%h1.left.no_bottom_margin.margin_bottom_30px.margin_top_1em My Jobs
+.clear
+
 #other_projects_container
-%ul
-  - @projects.each do |project|
-    %li= link_to project.title, user_other_project_path(current_user, project)
+  %table.zebra
+    %thead
+      %tr
+        %th Project Name
+        %th Total Hours
+        %th Amount
+        %th Log
+    %tbody    
+      - @projects.each do |project|
+        %tr
+          %td= link_to project.title, user_other_project_path(current_user, project)
+          %td= project.hours_total
+          %td= number_to_currency(project.amount_total, :precision => 2)
+          %td= link_to "Log Work", user_other_project_path(current_user, project)

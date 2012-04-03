@@ -2,7 +2,7 @@
   = semantic_form_for Job.new, :remote => true do |f|
     - f.inputs do
       - if controller_name == 'projects'
-        = f.input :person_id, :collection => project.people
+        = f.input :person_id, :collection => project.people, :label => 'Project Collaborator'
         = f.input :rate
       -else
         = f.hidden_field :person_id, :value => user.id

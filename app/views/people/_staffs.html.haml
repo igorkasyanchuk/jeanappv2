@@ -1,19 +1,15 @@
 .staff
   - if project.project_staffs.count > 0
     .person
-      /
-        .person_date
-          .date
-            %strong Date/Time
-      .person_name
+      .person_name 
         %strong Person
-      .person_description
-        %strong Description
       .hours_count
         %strong Hours
       .amount
         %strong Money
-      .controls 
+      .amount
+        %strong Added on
+      .person_name
         %strong Actions
       .clear  
     - project.project_staffs.backward.each do |staff|

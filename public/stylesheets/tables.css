@@ -69,16 +69,31 @@ table.projects tr td.icon img, table.projects tr th.icon img {
 }
 
 /* line 56, ../../app/stylesheets/tables.sass */
+.label {
+  padding: 1px 4px 2px;
+  font-weight: bold;
+  line-height: 22px;
+  font-size: 12px;
+  color: white;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 69, ../../app/stylesheets/tables.sass */
 .pending_status {
-  background: #ffcd00;
+  background: #f89406;
 }
 
-/* line 58, ../../app/stylesheets/tables.sass */
+/* line 71, ../../app/stylesheets/tables.sass */
 .approved_status {
-  background: red;
+  background: #9d261d;
 }
 
-/* line 60, ../../app/stylesheets/tables.sass */
+/* line 73, ../../app/stylesheets/tables.sass */
 .paid_status {
-  background: lime;
+  background: #46a546;
 }

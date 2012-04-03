@@ -3,14 +3,21 @@
     - f.inputs do
       - if controller_name == 'projects'
         = f.input :person_id, :collection => project.people, :label => 'Project Collaborator'
+        = f.input :rate
       -else
         = f.hidden_field :person_id, :value => user.id
+        = f.input :rate, :value => user.rate
       = f.hidden_field :project_id, :value => project.id
-
       -#= f.input :project_id, :collection => user.other_projects
       = f.input :hours
       = f.input :comment, :input_html => { :rows => '2', :cols => '40' }
     - f.buttons do
       = f.submit 'Log work'
+
+- if controller_name == 'projects'
+  - content_for :js do
+    == var people_rates = {#{project.people.map{|person| "#{person.id}:#{person.hourly_rate}" }.join(',')}};
+
+    $(document).ready(function(){  var person_select =  $('#job_person_id');  person_select.change(function(){   $('#job_rate').val(people_rates[person_select.val()])   });   });
 
 

@@ -3,8 +3,8 @@
   .person_description= job.comment
   .hours_count= job.hours
   .amount= number_to_currency(job.cost)
-  .state{ :class => "#{job.state}_status"} 
-    =job.state
+  .state 
+    =content_tag(:span, "#{job.state}", :class => " label #{job.state}_status")
   .controls
     -if job.pending?
       = link_to "Approve", approves_job_path(:project_id => job.project, :id => job, :status => 1), :remote => true   

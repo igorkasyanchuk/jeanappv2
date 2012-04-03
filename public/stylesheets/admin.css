@@ -258,12 +258,12 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
 /* line 331, ../../app/stylesheets/admin.sass */
 .staff .person .state {
   float: left;
-  width: 6%;
+  width: 8%;
 }
 /* line 337, ../../app/stylesheets/admin.sass */
 .staff .person .controls {
   float: left;
-  width: 20%;
+  width: 18%;
 }
 /* line 343, ../../app/stylesheets/admin.sass */
 .staff .person .controls a {

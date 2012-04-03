@@ -5,6 +5,7 @@ class Job < ActiveRecord::Base
 
   attr_protected :state
 
+  validates :rate, :presence => true, :numericality => true
   validates_presence_of :hours
   validates_presence_of :comment
 
@@ -65,6 +66,6 @@ class Job < ActiveRecord::Base
 private
 
   def cache_rates
-    self.rate = person.hourly_rate
+    self.rate ||= person.hourly_rate
   end
 end

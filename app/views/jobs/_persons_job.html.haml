@@ -3,8 +3,8 @@
   .hours_count= job.hours
   .amount= number_to_currency job.cost
   .amount= l job.created_at.to_date
-  .state{ :class => "#{job.state}_status"} 
-    = job.state
+  .state 
+    =content_tag(:span, "#{job.state}", :class => "label #{job.state}_status")
   .controls
     - if job.pending?
       = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'

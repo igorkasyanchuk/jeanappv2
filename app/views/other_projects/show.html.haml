@@ -1,4 +1,6 @@
-%h1= @project.title
+%h1.left.no_bottom_margin.margin_bottom_30px.margin_top_1em= @project.title
+.add.right= link_to 'Back', [current_user, :other_projects], :class => 'list_button'
+.clear
 
 .staff.jobs
   .person
@@ -8,6 +10,8 @@
       %strong Hours
     .amount
       %strong Money
+    .amount
+      %strong Added on
     .controls
       %strong Actions
     .clear

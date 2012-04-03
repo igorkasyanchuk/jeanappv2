@@ -2,6 +2,7 @@
   .person_description= job.comment
   .hours_count= job.hours
   .amount= job.cost
+  .amount= l job.created_at.to_date
   .controls
     -if job.pending?
       = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'

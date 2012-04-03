@@ -1,5 +1,5 @@
 .person.job.item{:id => "job_#{job.id}"}
-  .person_name= job.person.name
+  .person_name= link_to job.person.name, [current_user, job.person] 
   .person_description= job.comment
   .hours_count= job.hours
   .amount= number_to_currency(job.cost)

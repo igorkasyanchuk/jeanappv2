@@ -90,6 +90,7 @@ BASE
       :previous_month_text => prev_month_link, :next_month_text => next_month_link do |d|
         time_calendar_cell(d)
     end
-  end  
-  
+  end
+
+
 end

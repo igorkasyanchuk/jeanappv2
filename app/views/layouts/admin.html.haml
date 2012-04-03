@@ -16,6 +16,6 @@
       /%li.time_reports_menu= link_to 'Time Analize', [current_user, :time_reports]
       /%li= link_to 'Report', admin_reports_path
     %ul.admin_actions
-      %li= link_to 'Profile', edit_profile_path(current_user)
+      %li= link_to current_user.name, edit_profile_path(current_user)
       %li= link_to 'Sign out', user_session_path, :method => :delete
   .container= yield

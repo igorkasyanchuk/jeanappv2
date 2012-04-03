@@ -10,9 +10,17 @@ class Job < ActiveRecord::Base
 
   before_save :cache_rates
 
+  scope :forward,  order('jobs.created_at ASC')
+  scope :backward, order('jobs.created_at DESC')
+  scope :since,    lambda { |time| where('jobs.created_at >= ?', time) }
+  scope :before,   lambda { |time| where('jobs.created_at < ?',  time) }
+  scope :by_date, lambda { |date| where(['date(created_at) = date(?)', date])}
+
   def cost
     @cost ||= rate * hours
   end
+
+  alias_method :amount, :cost
 
   def unupprove
     update_attribute :state, 'pending' if approved?

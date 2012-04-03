@@ -75,7 +75,7 @@
       %td= @person.description
 
 %h2 Projects History
-- if @person.project_staffs.count > 0
+- if @person.jobs.count > 0
   %table
     %tr
       %th Date
@@ -84,14 +84,14 @@
       %th Hours
       %th Money
       %th Description
-    - @person.project_staffs.backward.each do |p|
+    - @person.jobs.backward.each do |p|
       %tr
         %td= p.created_at.to_s(:long)
         %td= link_to p.project.title, [current_user, p.project]
         %td= p.project.completed? ? 'completed' : 'in progress'
-        %td= p.hours_count
+        %td= p.hours
         %td= number_to_currency(p.amount, :precision => 2)
-        %td= p.description
+        %td= p.comment
 - else
   %strong List is empty.        
 

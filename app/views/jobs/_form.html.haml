@@ -2,7 +2,9 @@
   = semantic_form_for Job.new, :remote => true do |f|
     - f.inputs do
       = f.hidden_field :person_id, :value => user.id
-      = f.input :project_id, :collection => user.other_projects
+      = f.hidden_field :project_id, :value => project.id
+
+      -#= f.input :project_id, :collection => user.other_projects
       = f.input :hours
       = f.input :comment, :input_html => { :rows => '2', :cols => '40' }
     - f.buttons do

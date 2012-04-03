@@ -5,4 +5,8 @@ class OtherProjectsController < SecureController
     @projects = current_user.other_projects
   end
 
+  def show
+    @project = current_user.other_projects.find params[:id]
+  end
+
 end

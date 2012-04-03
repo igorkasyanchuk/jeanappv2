@@ -1,10 +1,4 @@
 #other_projects_container
+%ul
   - @projects.each do |project|
-    %h2= project.title
-    %h3.left Jobs
-    .jobs{:id => "jobs_#{project.id}"}
-      =render :partial => 'jobs/project_jobs', :locals => {:jobs => project.jobs_by(current_user.as_person), :project => project}
-
-= render 'jobs/form', :user => current_user
-
- 
+    %li= link_to project.title, user_other_project_path(current_user, project)

@@ -17,7 +17,7 @@
 #info= render :partial => '/projects/info', :locals => { :project => @project }
 
 %h2.left Employees
-.right= link_to 'Manage pemployees', project_employees_path(@project)
+.right= link_to 'Manage employees', project_employees_path(@project)
 /.right.add= link_to 'Add Employee', '#', :class => 'add_button', :to => '.staff_form'
 .clear
 -#= render :partial => '/people/staffs', :locals => { :project => @project }

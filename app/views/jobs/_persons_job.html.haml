@@ -2,6 +2,8 @@
   .person_description= job.comment
   .hours_count= job.hours
   .amount= job.cost
+  .state{ :class => "#{job.state}_status"} 
+    =job.state
   .controls
     -if job.pending?
       = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'

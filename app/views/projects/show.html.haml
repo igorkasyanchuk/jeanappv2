@@ -24,6 +24,7 @@
 
 .staff.jobs
   = render 'jobs/jobs', :project => @project
+= render 'jobs/form', :project => @project
 
 -#%h2.left Collaborators
 -#.right.add= link_to 'Invite Collaborator', '#', :class => 'add_button'#, :to => '.staff_form'

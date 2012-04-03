@@ -1,0 +1,16 @@
+%h1= @project.title
+
+.staff.jobs
+  .person
+    .person_description
+      %strong Description
+    .hours_count
+      %strong Hours
+    .amount
+      %strong Money
+    .controls
+      %strong Actions
+    .clear
+  = render :partial => 'jobs/persons_job', :collection => @project.jobs_by(current_user), :as => :job
+
+= render 'jobs/form', :user => current_user, :project => @project

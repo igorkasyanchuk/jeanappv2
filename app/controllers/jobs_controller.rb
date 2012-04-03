@@ -43,7 +43,7 @@ class JobsController < SecureController
     elsif params[:status] == '0'
       @job.pay
     end
-    render :create, :format => :js
+    render 'change_state'#:create, :format => :js
 
   end  
   

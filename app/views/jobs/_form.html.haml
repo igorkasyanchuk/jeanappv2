@@ -1,7 +1,10 @@
 .add_more_block
   = semantic_form_for Job.new, :remote => true do |f|
     - f.inputs do
-      = f.hidden_field :person_id, :value => user.id
+      - if controller_name == 'projects'
+        = f.input :person_id, :collection => project.people
+      -else
+        = f.hidden_field :person_id, :value => user.id
       = f.hidden_field :project_id, :value => project.id
 
       -#= f.input :project_id, :collection => user.other_projects

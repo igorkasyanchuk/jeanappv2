@@ -1,0 +1,12 @@
+.person_description= job.comment
+.hours_count= job.hours
+.amount= job.cost
+.controls
+  -if job.pending?
+    = link_to "Approve", approves_job_path(:project_id => project, :id => job, :status => 1), :remote => 'true'   
+  -elsif job.approved?
+    %td
+      = link_to "Pay", approves_job_path(:project_id => project, :id => job, :status => 0), :remote => 'true'
+      |
+      = link_to "un approve", approves_job_path(:project_id => project, :id => job, :status => -1), :remote => 'true'
+  = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => 'delete_button'

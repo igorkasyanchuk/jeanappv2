@@ -1,7 +1,7 @@
 .person.job.item{:id => "job_#{job.id}"}
   .person_description= job.comment
   .hours_count= job.hours
-  .amount= job.cost
+  .amount= number_to_currency(job.cost)
   .state{ :class => "#{job.state}_status"} 
     =job.state
   .controls

@@ -1,5 +1,5 @@
 - content_for :on_ready do
-  == $('.admin_menu .#{controller_name}_menu').addClass('selected');
+  == $('.#{controller_name}_menu').addClass('selected');
     
 - content_for :css do
   = stylesheet_link_tag 'admin'
@@ -17,6 +17,6 @@
       /%li.time_reports_menu= link_to 'Time Analize', [current_user, :time_reports]
       /%li= link_to 'Report', admin_reports_path
     %ul.admin_actions
-      %li= link_to current_user.name, edit_profile_path(current_user)
+      %li.profiles_menu= link_to current_user.name, edit_profile_path(current_user)
       %li= link_to 'Sign out', user_session_path, :method => :delete
   .container= yield

@@ -48,243 +48,249 @@ ul.admin_actions li {
   float: left;
   font-size: 12px;
   list-style-type: none;
-  padding: 3px 8px 3px 0px;
+  padding: 3px 4px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+/* line 81, ../../app/stylesheets/admin.sass */
+ul.admin_actions li:hover, ul.admin_actions li.selected {
+  background: #ffde01;
 }
 
-/* line 79, ../../app/stylesheets/admin.sass */
+/* line 87, ../../app/stylesheets/admin.sass */
 .notes {
   padding-bottom: 16px;
 }
-/* line 83, ../../app/stylesheets/admin.sass */
+/* line 91, ../../app/stylesheets/admin.sass */
 .notes .note {
   margin-bottom: 6px;
   border-bottom: 1px solid #ececec;
   border-top: 1px solid #ececec;
 }
-/* line 91, ../../app/stylesheets/admin.sass */
+/* line 99, ../../app/stylesheets/admin.sass */
 .notes .note .note_date {
   float: left;
   width: 24%;
   padding-right: 1%;
   font-size: 12px;
 }
-/* line 101, ../../app/stylesheets/admin.sass */
+/* line 109, ../../app/stylesheets/admin.sass */
 .notes .note .note_date .date {
   font-weight: bold;
 }
-/* line 105, ../../app/stylesheets/admin.sass */
+/* line 113, ../../app/stylesheets/admin.sass */
 .notes .note .message {
   float: left;
   width: 64%;
 }
-/* line 111, ../../app/stylesheets/admin.sass */
+/* line 119, ../../app/stylesheets/admin.sass */
 .notes .note .controls {
   float: left;
   width: 10%;
 }
 
-/* line 119, ../../app/stylesheets/admin.sass */
+/* line 127, ../../app/stylesheets/admin.sass */
 .expenses {
   padding-bottom: 16px;
 }
-/* line 123, ../../app/stylesheets/admin.sass */
+/* line 131, ../../app/stylesheets/admin.sass */
 .expenses .expense {
   margin-bottom: 6px;
   border-bottom: 1px solid #ececec;
   border-top: 1px solid #ececec;
 }
-/* line 131, ../../app/stylesheets/admin.sass */
+/* line 139, ../../app/stylesheets/admin.sass */
 .expenses .expense .expense_date {
   float: left;
   width: 24%;
   padding-right: 1%;
   font-size: 12px;
 }
-/* line 141, ../../app/stylesheets/admin.sass */
+/* line 149, ../../app/stylesheets/admin.sass */
 .expenses .expense .expense_date .date {
   font-weight: bold;
 }
-/* line 145, ../../app/stylesheets/admin.sass */
+/* line 153, ../../app/stylesheets/admin.sass */
 .expenses .expense .message {
   float: left;
   width: 50%;
 }
-/* line 151, ../../app/stylesheets/admin.sass */
+/* line 159, ../../app/stylesheets/admin.sass */
 .expenses .expense .controls {
   float: left;
   width: 10%;
 }
-/* line 157, ../../app/stylesheets/admin.sass */
+/* line 165, ../../app/stylesheets/admin.sass */
 .expenses .expense .amount {
   float: left;
   width: 14%;
 }
-/* line 163, ../../app/stylesheets/admin.sass */
+/* line 171, ../../app/stylesheets/admin.sass */
 .expenses .expense .amount_total {
   margin-left: 25%;
 }
 
-/* line 169, ../../app/stylesheets/admin.sass */
+/* line 177, ../../app/stylesheets/admin.sass */
 .invoices {
   padding-bottom: 16px;
 }
-/* line 173, ../../app/stylesheets/admin.sass */
+/* line 181, ../../app/stylesheets/admin.sass */
 .invoices .invoice {
   margin-bottom: 6px;
   border-bottom: 1px solid #ececec;
   border-top: 1px solid #ececec;
 }
-/* line 181, ../../app/stylesheets/admin.sass */
+/* line 189, ../../app/stylesheets/admin.sass */
 .invoices .invoice .invoice_date {
   float: left;
   width: 24%;
   padding-right: 1%;
   font-size: 12px;
 }
-/* line 191, ../../app/stylesheets/admin.sass */
+/* line 199, ../../app/stylesheets/admin.sass */
 .invoices .invoice .invoice_date .date {
   font-weight: bold;
 }
-/* line 195, ../../app/stylesheets/admin.sass */
+/* line 203, ../../app/stylesheets/admin.sass */
 .invoices .invoice .message {
   float: left;
   width: 37%;
 }
-/* line 201, ../../app/stylesheets/admin.sass */
+/* line 209, ../../app/stylesheets/admin.sass */
 .invoices .invoice .controls {
   float: left;
   width: 10%;
 }
-/* line 207, ../../app/stylesheets/admin.sass */
+/* line 215, ../../app/stylesheets/admin.sass */
 .invoices .invoice .hours {
   float: left;
   width: 5%;
 }
-/* line 213, ../../app/stylesheets/admin.sass */
+/* line 221, ../../app/stylesheets/admin.sass */
 .invoices .invoice .hourly_rate {
   float: left;
   width: 10%;
 }
-/* line 219, ../../app/stylesheets/admin.sass */
+/* line 227, ../../app/stylesheets/admin.sass */
 .invoices .invoice .paid {
   float: left;
   width: 12%;
 }
-/* line 225, ../../app/stylesheets/admin.sass */
+/* line 233, ../../app/stylesheets/admin.sass */
 .invoices .invoice .amount_total {
   margin-left: 25%;
 }
 
-/* line 231, ../../app/stylesheets/admin.sass */
+/* line 239, ../../app/stylesheets/admin.sass */
 .own_hours {
   padding-bottom: 16px;
 }
-/* line 235, ../../app/stylesheets/admin.sass */
+/* line 243, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour {
   margin-bottom: 6px;
   border-bottom: 1px solid #ececec;
   border-top: 1px solid #ececec;
 }
-/* line 243, ../../app/stylesheets/admin.sass */
+/* line 251, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour .own_hour_date {
   float: left;
   width: 24%;
   padding-right: 1%;
   font-size: 12px;
 }
-/* line 253, ../../app/stylesheets/admin.sass */
+/* line 261, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour .own_hour_date .date {
   font-weight: bold;
 }
-/* line 257, ../../app/stylesheets/admin.sass */
+/* line 265, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour .controls {
   float: left;
   width: 10%;
 }
-/* line 263, ../../app/stylesheets/admin.sass */
+/* line 271, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour .hours_count {
   float: left;
   width: 14%;
 }
-/* line 269, ../../app/stylesheets/admin.sass */
+/* line 277, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour .description {
   float: left;
   width: 50%;
 }
-/* line 275, ../../app/stylesheets/admin.sass */
+/* line 283, ../../app/stylesheets/admin.sass */
 .own_hours .own_hour .hours_count_total {
   margin-left: 25%;
 }
 
-/* line 281, ../../app/stylesheets/admin.sass */
+/* line 289, ../../app/stylesheets/admin.sass */
 .staff {
   padding-bottom: 16px;
 }
-/* line 285, ../../app/stylesheets/admin.sass */
+/* line 293, ../../app/stylesheets/admin.sass */
 .staff .person {
   margin-bottom: 6px;
   border-bottom: 1px solid #ececec;
   border-top: 1px solid #ececec;
 }
-/* line 293, ../../app/stylesheets/admin.sass */
+/* line 301, ../../app/stylesheets/admin.sass */
 .staff .person .person_date {
   float: left;
   width: 24%;
   padding-right: 1%;
   font-size: 12px;
 }
-/* line 303, ../../app/stylesheets/admin.sass */
+/* line 311, ../../app/stylesheets/admin.sass */
 .staff .person .person_date .date {
   font-weight: bold;
 }
-/* line 307, ../../app/stylesheets/admin.sass */
+/* line 315, ../../app/stylesheets/admin.sass */
 .staff .person .person_name {
   float: left;
   width: 14%;
 }
-/* line 313, ../../app/stylesheets/admin.sass */
+/* line 321, ../../app/stylesheets/admin.sass */
 .staff .person .person_description {
   float: left;
   min-width: 250px;
   max-width: 250px;
   min-height: 21px;
 }
-/* line 323, ../../app/stylesheets/admin.sass */
+/* line 331, ../../app/stylesheets/admin.sass */
 .staff .person .state {
   float: left;
   width: 6%;
 }
-/* line 329, ../../app/stylesheets/admin.sass */
+/* line 337, ../../app/stylesheets/admin.sass */
 .staff .person .controls {
   float: left;
   width: 20%;
 }
-/* line 335, ../../app/stylesheets/admin.sass */
+/* line 343, ../../app/stylesheets/admin.sass */
 .staff .person .controls a {
   margin-right: 5px;
 }
-/* line 339, ../../app/stylesheets/admin.sass */
+/* line 347, ../../app/stylesheets/admin.sass */
 .staff .person .hours_count {
   float: left;
   width: 6%;
 }
-/* line 345, ../../app/stylesheets/admin.sass */
+/* line 353, ../../app/stylesheets/admin.sass */
 .staff .person .amount {
   float: left;
   width: 10%;
 }
-/* line 351, ../../app/stylesheets/admin.sass */
+/* line 359, ../../app/stylesheets/admin.sass */
 .staff .person .hourly_rate {
   float: left;
   width: 15%;
 }
-/* line 357, ../../app/stylesheets/admin.sass */
+/* line 365, ../../app/stylesheets/admin.sass */
 .staff .person .hours_total {
   margin-left: 24%;
   width: 15%;
 }
 
-/* line 365, ../../app/stylesheets/admin.sass */
+/* line 373, ../../app/stylesheets/admin.sass */
 .add {
   font-size: 1.4em;
   font-weight: bold;
@@ -296,7 +302,7 @@ ul.admin_actions li {
   -webkit-border-radius: 12px;
 }
 
-/* line 385, ../../app/stylesheets/admin.sass */
+/* line 393, ../../app/stylesheets/admin.sass */
 .action_block {
   font-size: 1.4em;
   font-weight: bold;
@@ -306,7 +312,7 @@ ul.admin_actions li {
   -webkit-border-radius: 12px;
 }
 
-/* line 401, ../../app/stylesheets/admin.sass */
+/* line 409, ../../app/stylesheets/admin.sass */
 span.info {
   display: inline-block;
   margin-top: 3px;
@@ -319,74 +325,74 @@ span.info {
   -webkit-border-radius: 2px;
 }
 
-/* line 425, ../../app/stylesheets/admin.sass */
+/* line 433, ../../app/stylesheets/admin.sass */
 table.projects tr td, table.projects tr th {
   padding: 6px 4px;
 }
 
-/* line 431, ../../app/stylesheets/admin.sass */
+/* line 439, ../../app/stylesheets/admin.sass */
 .summary {
   background: #ececec;
   font-style: italic;
 }
 
-/* line 439, ../../app/stylesheets/admin.sass */
+/* line 447, ../../app/stylesheets/admin.sass */
 .project_status {
   padding: 2px 4px;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
-/* line 447, ../../app/stylesheets/admin.sass */
+/* line 455, ../../app/stylesheets/admin.sass */
 .project_status.red {
   background: red;
   color: white;
 }
-/* line 453, ../../app/stylesheets/admin.sass */
+/* line 461, ../../app/stylesheets/admin.sass */
 .project_status.green {
   background: green;
   color: white;
 }
-/* line 459, ../../app/stylesheets/admin.sass */
+/* line 467, ../../app/stylesheets/admin.sass */
 .project_status.yellow {
   background: yellow;
   color: black;
 }
 
-/* line 467, ../../app/stylesheets/admin.sass */
+/* line 475, ../../app/stylesheets/admin.sass */
 #chart_div {
   -moz-border-radius: 10px 10px 10px 10px;
   border: 2px solid white;
   margin: 0px auto auto;
 }
 
-/* line 477, ../../app/stylesheets/admin.sass */
+/* line 485, ../../app/stylesheets/admin.sass */
 table.table_layout {
   padding: 0;
   margin: 0;
   border: 0;
   overflow: hidden;
 }
-/* line 487, ../../app/stylesheets/admin.sass */
+/* line 495, ../../app/stylesheets/admin.sass */
 table.table_layout tr td {
   vertical-align: top;
 }
 
-/* line 493, ../../app/stylesheets/admin.sass */
+/* line 501, ../../app/stylesheets/admin.sass */
 #chart_table {
   width: 100%;
   height: 470px;
 }
-/* line 499, ../../app/stylesheets/admin.sass */
+/* line 507, ../../app/stylesheets/admin.sass */
 #chart_table .annotatedtimelinetable {
   border: 0 none;
 }
 
-/* line 505, ../../app/stylesheets/admin.sass */
+/* line 513, ../../app/stylesheets/admin.sass */
 .inline {
   display: inline;
 }
 
-/* line 511, ../../app/stylesheets/admin.sass */
+/* line 519, ../../app/stylesheets/admin.sass */
 .legend {
   font-size: 12px;
   color: #999999;

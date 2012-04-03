@@ -1,7 +1,8 @@
 .person{ :class => cycle(:odd, :even), :id => "staff-#{staff.id}" }
   .person_name= link_to staff.person.name, [current_user, staff.person]
-  .person_description!= RedCloth.new(staff.description).to_html
+  //.person_description!= RedCloth.new(staff.description).to_html
   .hours_count= staff.person.total_hours_on project
   .amount= number_to_currency(staff.person.total_money_on(project), :precision => 2)
-  .controls= link_to 'remove', [current_user, project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+  .amount= l staff.created_at.to_date
+  .controls= link_to 'remove from project', [current_user, project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
   .clear

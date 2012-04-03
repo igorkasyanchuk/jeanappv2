@@ -18,33 +18,30 @@ class InvitationsController < SecureController
       redirect_to root_url
     end
 
-    
+
   end
 
   def create
     @invitation = Invitation.new(params[:invitation])
-    @person = current_user.people.find_by_email(@invitation.email)
+    @person = Person.find_by_email(@invitation.email)
     @project = current_user.projects.find(@invitation.project_id)
+
     if @person.present? && @project.people.include?(@person)
       flash[:notice] = 'You already have this employee in your project!'
-      redirect_to user_project_path(current_user, @invitation.project_id)
-    elsif @person.present?      
-      ProjectStaff.create(:person_id => @person.id, :project_id => @invitation.project_id, :description => '')
-      flash[:notice] = 'You successfully add employee to your project!'
-      redirect_to user_project_path(current_user, @invitation.project_id)
+      redirect_to project_employees_path(@project)
     else
-      respond_to do |format|        
+      respond_to do |format|
         if @invitation.save
           flash[:notice] = 'Invitation was successfully sent!'
-          format.html { redirect_to user_project_path(current_user, @invitation.project_id) }
+          format.html { redirect_to project_employees_path(@project) }
         else
           flash[:notice] = @invitation.errors.full_messages.first
-          format.html { redirect_to user_project_path(current_user, @invitation.project_id) }
+          format.html { redirect_to project_employees_path(@project) }
         end
       end
     end
 
   end
-  
+
 
 end

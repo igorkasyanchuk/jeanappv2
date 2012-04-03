@@ -1,7 +1,6 @@
-= link_to 'Back to project', [current_user, @project]
-
-%h2.left Manage Employees on Project
-.right.add= link_to 'Add Employee', '#', :class => 'add_button', :to => '.staff_form'
+%h2.left== Manage Employees on #{@project.title}
+.right.add= link_to 'Add existing Employee', '#', :class => 'add_button', :to => '.staff_form'
+.right.add= link_to 'Back to Project', [current_user, @project], :class => 'show_button'
 .clear
 
 .staff
@@ -35,8 +34,6 @@
   = semantic_form_for [current_user, @project, @project.project_staffs.build], :remote => true, :html => { :class => 'none staff_form' } do |f|
     = f.inputs do
       = f.input :person, :as => :select, :include_blank => false, :collection => current_user.people.collect{|p| [ "#{p.name} (#{number_to_currency(p.hourly_rate, :precision => 2)}/hour)", p.id ] }
-      -#= f.input :hours_count
-      = f.input :description, :input_html => { :rows => '2', :cols => '40' }
     = f.buttons do
       = f.submit 'Add employee'
       = link_to 'Hide', '#', :class => 'hide cancel_button'

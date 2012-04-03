@@ -1,7 +1,6 @@
-= link_to 'Back to project', [current_user, @project], :class => 'left'
-.clear
-%h2.left Employees
-.right.add= link_to 'Add Employee', '#', :class => 'add_button', :to => '.staff_form'
+%h2.left== Manage Employees on #{@project.title}
+.right.add= link_to 'Add existing Employee', '#', :class => 'add_button', :to => '.staff_form'
+.right.add= link_to 'Back to Project', [current_user, @project], :class => 'show_button'
 .clear
 
 .staff
@@ -9,28 +8,32 @@
     .person
       .person_name 
         %strong Person
-      .person_description
-        %strong Description
       .hours_count
         %strong Hours
       .amount
         %strong Money
-      .controls 
+      .amount
+        %strong Added on
+      .person_name
         %strong Actions
       .clear  
     - @project.project_staffs.backward.each do |staff|
-      = render :partial => '/people/staff', :locals => { :staff => staff, :project => @project }
+      .person{ :class => cycle(:odd, :even), :id => "staff-#{staff.id}" }
+        .person_name= link_to staff.person.name, [current_user, staff.person]
+        .hours_count= staff.person.total_hours_on @project
+        .amount= number_to_currency(staff.person.total_money_on(@project), :precision => 2)
+        .amount= l staff.created_at.to_date
+        .person_name= link_to 'remove from project', [current_user, @project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+        .clear
   - else
     .staff_list_is_empty
-      %i List is empty. Add Employees.
+      %i List is empty. Add Employee to Project.
 
 
 .add_more_block
   = semantic_form_for [current_user, @project, @project.project_staffs.build], :remote => true, :html => { :class => 'none staff_form' } do |f|
     = f.inputs do
       = f.input :person, :as => :select, :include_blank => false, :collection => current_user.people.collect{|p| [ "#{p.name} (#{number_to_currency(p.hourly_rate, :precision => 2)}/hour)", p.id ] }
-      -#= f.input :hours_count
-      = f.input :description, :input_html => { :rows => '2', :cols => '40' }
     = f.buttons do
       = f.submit 'Add employee'
       = link_to 'Hide', '#', :class => 'hide cancel_button'

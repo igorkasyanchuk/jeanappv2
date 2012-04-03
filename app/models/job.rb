@@ -5,6 +5,7 @@ class Job < ActiveRecord::Base
 
   attr_protected :state
 
+  validates :rate, :presence => true, :numericality => true
   validates_presence_of :hours
   validates_presence_of :comment
 

@@ -88,7 +88,7 @@
       %tr
         %td= p.created_at.to_s(:long)
         %td= link_to p.project.title, [current_user, p.project]
-        %td= content_tag(:span, "#{p.project.completed? ? 'completed' : 'in progress'}", :class => "label #{p.project.completed? ? 'pending_status' : 'approved_status'}")
+        %td= content_tag(:span, "#{p.project.completed? ? 'completed' : 'in progress'}", :class => "label #{p.project.completed? ? 'paid_status' : 'pending_status'}")
         %td= p.hours
         %td= number_to_currency(p.amount, :precision => 2)
         %td= p.comment

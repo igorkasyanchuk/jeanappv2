@@ -2,6 +2,8 @@
 .add.right= link_to 'Back', [current_user, :other_projects], :class => 'list_button'
 .clear
 
+%p Your rate #{number_to_currency current_user.hourly_rate}
+
 .staff.jobs
   .person
     .person_description

@@ -18,7 +18,7 @@ class PeopleController < SecureController
   end
 
   def create
-    params[:person] = params[:person].merge :password => 123456, :password_confirmation => 123456
+    params[:person] = params[:person].merge :password => 111111, :password_confirmation => 111111
     #raise params[:person].inspect
     super
     @person.users << current_user unless @person.new_record?

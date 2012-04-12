@@ -6,17 +6,18 @@
 
 = inside_layout 'application' do
   #admin.container
+
     %ul.admin_menu
-      %li.projects_menu= link_to 'Projects', [current_user, :projects]
-      %li.clients_menu= link_to 'Clients', [current_user, :clients]
-      %li.people_menu= link_to 'Employees', [current_user, :people]
-      - if current_user.other_projects.count > 0
-        %li.other_projects_menu= link_to 'My Jobs', [current_user, :other_projects]
-      /%li.earnings_menu= link_to 'Earnings', [current_user, :earnings]
-      /%li.calendars_menu= link_to 'In / Out', [current_user, :calendars]
-      /%li.time_reports_menu= link_to 'Time Analize', [current_user, :time_reports]
-      /%li= link_to 'Report', admin_reports_path
+      - if current_user.owner?
+        %li.projects_menu= link_to 'Projects', [current_user, :projects]
+        %li.clients_menu= link_to 'Clients', [current_user, :clients]
+        %li.people_menu= link_to 'Employees', [current_user, :people]
+
+      - else
+        %li.other_projects_menu= link_to 'Projects', [current_user, :other_projects]
+
     %ul.admin_actions
       %li.profiles_menu= link_to current_user.name, edit_profile_path(current_user)
       %li= link_to 'Sign out', user_session_path, :method => :delete
+
   .container= yield

@@ -2,7 +2,9 @@
 .add.right= link_to 'Back', [current_user, :other_projects], :class => 'list_button'
 .clear
 
-%p Your Rate: #{number_to_currency current_user.hourly_rate}
+- staff = @project.project_staffs.by_person(current_user.id).first
+- if staff
+  %p Your Rate: #{number_to_currency staff.hourly_rate}
 
 .staff.jobs
   .person
@@ -21,4 +23,5 @@
     .clear
   = render :partial => 'jobs/persons_job', :collection => @project.jobs_by(current_user), :as => :job
 
-= render 'jobs/form', :user => current_user, :project => @project
+- if staff
+  = render 'jobs/form', :user => current_user, :project => @project

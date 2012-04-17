@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
   
   has_many :project_participations, :through => :projects, :class_name => 'ProjectStaff', :foreign_key => :person_id, :uniq => true
   has_many :other_projects, :class_name => 'Project', :through => :project_participations, :source => :project
+
+  has_many :jobs, :foreign_key => :person_id, :class_name => "Job", :uniq => true
+  has_many :other_projects_with_history, :class_name => 'Project', :through => :jobs, :source => :project, :uniq => true
   
   before_save :geocode_it!
   

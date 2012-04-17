@@ -28,6 +28,8 @@ class Person < ActiveRecord::Base
   
   before_save :geocode_it!, :set_employee_flag!, :set_default_password!
 
+  scope :by_name, order(:first_name)
+
   def name
     "#{self.first_name} #{self.last_name}"
   end
@@ -50,6 +52,7 @@ class Person < ActiveRecord::Base
 
   def set_employee_flag!
     employee = true
+    user_type = 'employee'
   end
 
   def set_default_password!

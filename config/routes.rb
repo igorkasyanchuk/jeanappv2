@@ -21,6 +21,7 @@ TrackMyTime::Application.routes.draw do
     resources :projects do
       member do
         get :toggle_project
+        get :toggle_employee
       end
       resources :expenses
       resources :invoices

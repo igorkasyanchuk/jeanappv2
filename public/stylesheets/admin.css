@@ -249,48 +249,72 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
   width: 14%;
 }
 /* line 321, ../../app/stylesheets/admin.sass */
+.staff .person .full_person_name {
+  float: left;
+  width: 24%;
+}
+/* line 327, ../../app/stylesheets/admin.sass */
 .staff .person .person_description {
   float: left;
   min-width: 250px;
   max-width: 250px;
   min-height: 21px;
 }
-/* line 331, ../../app/stylesheets/admin.sass */
+/* line 337, ../../app/stylesheets/admin.sass */
 .staff .person .state {
   float: left;
   width: 8%;
 }
-/* line 337, ../../app/stylesheets/admin.sass */
+/* line 343, ../../app/stylesheets/admin.sass */
 .staff .person .controls {
   float: left;
   width: 18%;
 }
-/* line 343, ../../app/stylesheets/admin.sass */
+/* line 349, ../../app/stylesheets/admin.sass */
 .staff .person .controls a {
   margin-right: 5px;
 }
-/* line 347, ../../app/stylesheets/admin.sass */
+/* line 353, ../../app/stylesheets/admin.sass */
 .staff .person .hours_count {
   float: left;
   width: 6%;
 }
-/* line 353, ../../app/stylesheets/admin.sass */
+/* line 359, ../../app/stylesheets/admin.sass */
+.staff .person .full_hours_count {
+  float: left;
+  width: 10%;
+}
+/* line 365, ../../app/stylesheets/admin.sass */
 .staff .person .amount {
   float: left;
   width: 10%;
 }
-/* line 359, ../../app/stylesheets/admin.sass */
+/* line 371, ../../app/stylesheets/admin.sass */
+.staff .person .rate {
+  float: left;
+  width: 10%;
+}
+/* line 377, ../../app/stylesheets/admin.sass */
+.staff .person .rate input {
+  width: 60px;
+}
+/* line 381, ../../app/stylesheets/admin.sass */
+.staff .person .checkbox {
+  width: 5%;
+  float: left;
+}
+/* line 387, ../../app/stylesheets/admin.sass */
 .staff .person .hourly_rate {
   float: left;
   width: 15%;
 }
-/* line 365, ../../app/stylesheets/admin.sass */
+/* line 393, ../../app/stylesheets/admin.sass */
 .staff .person .hours_total {
   margin-left: 24%;
   width: 15%;
 }
 
-/* line 373, ../../app/stylesheets/admin.sass */
+/* line 401, ../../app/stylesheets/admin.sass */
 .add {
   font-size: 1.4em;
   font-weight: bold;
@@ -302,7 +326,7 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
   -webkit-border-radius: 12px;
 }
 
-/* line 393, ../../app/stylesheets/admin.sass */
+/* line 421, ../../app/stylesheets/admin.sass */
 .action_block {
   font-size: 1.4em;
   font-weight: bold;
@@ -312,7 +336,7 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
   -webkit-border-radius: 12px;
 }
 
-/* line 409, ../../app/stylesheets/admin.sass */
+/* line 437, ../../app/stylesheets/admin.sass */
 span.info {
   display: inline-block;
   margin-top: 3px;
@@ -325,74 +349,74 @@ span.info {
   -webkit-border-radius: 2px;
 }
 
-/* line 433, ../../app/stylesheets/admin.sass */
+/* line 461, ../../app/stylesheets/admin.sass */
 table.projects tr td, table.projects tr th {
   padding: 6px 4px;
 }
 
-/* line 439, ../../app/stylesheets/admin.sass */
+/* line 467, ../../app/stylesheets/admin.sass */
 .summary {
   background: #ececec;
   font-style: italic;
 }
 
-/* line 447, ../../app/stylesheets/admin.sass */
+/* line 475, ../../app/stylesheets/admin.sass */
 .project_status {
   padding: 2px 4px;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
-/* line 455, ../../app/stylesheets/admin.sass */
+/* line 483, ../../app/stylesheets/admin.sass */
 .project_status.red {
   background: red;
   color: white;
 }
-/* line 461, ../../app/stylesheets/admin.sass */
+/* line 489, ../../app/stylesheets/admin.sass */
 .project_status.green {
   background: green;
   color: white;
 }
-/* line 467, ../../app/stylesheets/admin.sass */
+/* line 495, ../../app/stylesheets/admin.sass */
 .project_status.yellow {
   background: yellow;
   color: black;
 }
 
-/* line 475, ../../app/stylesheets/admin.sass */
+/* line 503, ../../app/stylesheets/admin.sass */
 #chart_div {
   -moz-border-radius: 10px 10px 10px 10px;
   border: 2px solid white;
   margin: 0px auto auto;
 }
 
-/* line 485, ../../app/stylesheets/admin.sass */
+/* line 513, ../../app/stylesheets/admin.sass */
 table.table_layout {
   padding: 0;
   margin: 0;
   border: 0;
   overflow: hidden;
 }
-/* line 495, ../../app/stylesheets/admin.sass */
+/* line 523, ../../app/stylesheets/admin.sass */
 table.table_layout tr td {
   vertical-align: top;
 }
 
-/* line 501, ../../app/stylesheets/admin.sass */
+/* line 529, ../../app/stylesheets/admin.sass */
 #chart_table {
   width: 100%;
   height: 470px;
 }
-/* line 507, ../../app/stylesheets/admin.sass */
+/* line 535, ../../app/stylesheets/admin.sass */
 #chart_table .annotatedtimelinetable {
   border: 0 none;
 }
 
-/* line 513, ../../app/stylesheets/admin.sass */
+/* line 541, ../../app/stylesheets/admin.sass */
 .inline {
   display: inline;
 }
 
-/* line 519, ../../app/stylesheets/admin.sass */
+/* line 547, ../../app/stylesheets/admin.sass */
 .legend {
   font-size: 12px;
   color: #999999;

@@ -6,9 +6,6 @@
         = f.input :rate
       -else
         = f.hidden_field :person_id, :value => user.id
-        =# f.input :rate, :input_html => { :value => user.hourly_rate }
-        = f.hidden_field :rate, :value => user.hourly_rate
-
       = f.hidden_field :project_id, :value => project.id
       -#= f.input :project_id, :collection => user.other_projects
       = f.input :hours

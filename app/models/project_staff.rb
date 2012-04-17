@@ -11,6 +11,7 @@ class ProjectStaff < ActiveRecord::Base
   scope :before,   lambda { |time| where('project_staffs.created_at < ?',  time) }
   scope :by_date, lambda { |date| where(['date(created_at) = date(?)', date])}
   scope :by_projects, lambda { |projects| where(:project_id => projects) }
+  scope :by_person, lambda { |person_id| where(:person_id => person_id) }
 
   #before_save :set_rate
 

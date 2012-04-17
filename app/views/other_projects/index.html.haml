@@ -8,11 +8,13 @@
           %th Project Name
           %th Total Hours
           %th Amount
-          %th Log
+          %th Actions
       %tbody
         - @projects.each do |project|
           %tr
             %td= link_to project.title, user_other_project_path(current_user, project)
             %td= project.hours_total
             %td= number_to_currency(project.amount_total, :precision => 2)
-            %td= link_to "Log Work", user_other_project_path(current_user, project)
+            %td
+              - staff = project.project_staffs.by_person(current_user.id).first
+              = link_to (staff.present? ? "Log Work" : "Details"), user_other_project_path(current_user, project)

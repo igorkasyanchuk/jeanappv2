@@ -1,56 +1,45 @@
+= content_for :on_ready do
+  :plain
+    $(".cb").live("change", function() {
+      link = $(this).parents(".person").find(".remove_item_button:first");
+      rate = $(this).parents(".person").find(".rate_input:first").val();
+      href = link.attr("href");
+      $.ajax({url: href, data: {hourly_rate: rate}});
+    });
+
 %h2.left== Manage Employees on #{@project.title}
-.right.add= link_to 'Add an existing Employee', '#', :class => 'add_button', :to => '.staff_form'
 .right.add= link_to 'Back to Project', [current_user, @project], :class => 'show_button'
 .clear
 
 .staff
-  - if @project.project_staffs.count > 0
+  -# if @project.project_staffs.count > 0
+  - if current_user.people.count > 0
     .person
-      .person_name 
+      .checkbox
+        &nbsp;
+      .full_person_name 
         %strong Person
-      .hours_count
+      .rate
+        %strong Rate
+      .full_hours_count
         %strong Hours
       .amount
         %strong Money
-      .amount
-        %strong Added on
-      .person_name
+      .person_name.none
         %strong Actions
       .clear  
-    - @project.project_staffs.backward.each do |staff|
-      .person{ :class => cycle(:odd, :even), :id => "staff-#{staff.id}" }
-        .person_name= link_to staff.person.name, [current_user, staff.person]
-        .hours_count= staff.person.total_hours_on @project
-        .amount= number_to_currency(staff.person.total_money_on(@project), :precision => 2)
-        .amount= l staff.created_at.to_date
-        .person_name= link_to 'remove from project', [current_user, @project, staff], :remote => true, :method => :delete, :confirm => 'Are you sure?', :class => 'remove_item_button'
+    - current_user.people.by_name.each do |person|
+      - staff = @project.project_staffs.by_person(person.id).first
+      .person{ :class => cycle(:odd, :even), :id => "staff-#{person.id}" }
+        .checkbox
+          = check_box_tag :user_id, 'checked', @project.project_staffs.by_person(person.id).any?, :class => 'cb'
+        .full_person_name= link_to person.name, [current_user, person]
+        .rate
+          = text_field_tag :rate, staff.try(:hourly_rate) || person.hourly_rate, :class => 'rate_input'
+        .full_hours_count= person.total_hours_on @project
+        .amount= number_to_currency(person.total_money_on(@project), :precision => 2)
+        .person_name.none= link_to 'remove from project', toggle_employee_user_project_path(current_user, @project, :person_id => person), :remote => true, :class => 'remove_item_button'
         .clear
   - else
     .staff_list_is_empty
-      %i List is empty. Add Employee to Project.
-
-
-.add_more_block
-  = semantic_form_for [current_user, @project, @project.project_staffs.build], :remote => true, :html => { :class => 'none staff_form' } do |f|
-    = f.inputs do
-      = f.input :person, :as => :select, :include_blank => false, :collection => current_user.people.collect{|p| [ "#{p.name} (#{number_to_currency(p.hourly_rate, :precision => 2)}/hour)", p.id ] }
-    = f.buttons do
-      = f.submit 'Add employee'
-      = link_to 'Hide', '#', :class => 'hide cancel_button'
-
-%hr
-%h2 Invite Employee
-= semantic_form_for [current_user, @project, @project.invitations.build], :html => { :class => 'invitation_form' } do |f|
-  = f.inputs do
-    = f.input :project_id, :as => :hidden, :input_html => {:value => @project.id}
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :rate
-    = f.input :email
-  = f.buttons do
-    = f.submit 'Send Invitation'
-
-- content_for :on_ready do
-  init_add_form();
-  //init_add_invoice();
-  //init_project_show_page();
+      %i List is empty. First try to add employee.

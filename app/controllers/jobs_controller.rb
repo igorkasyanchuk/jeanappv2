@@ -2,14 +2,15 @@ class JobsController < SecureController
   #belongs_to :project
   
   def create
-    @project = if request.referer.include? user_other_projects_path(current_user)
-      params[:job][:person_id] = current_user.id
-      current_user.other_projects
-     elsif request.referer.include? user_projects_path(current_user)
-      current_user.projects  
-    end.find params[:job][:project_id]
+    @project = Project.find params[:job][:project_id]
     params[:job].delete(:project_id)
+
+    staff = @project.project_staffs.by_person(params[:job][:person_id]).first
+    params[:job][:rate] = staff.hourly_rate
+
     @job = @project.jobs.create params[:job]
+
+    logger.info @job.errors.full_messages.inspect
     create!  do |format|
       format.js {}
     end

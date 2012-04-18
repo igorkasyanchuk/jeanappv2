@@ -46,7 +46,7 @@ class ProjectsController < SecureController
     if @project.project_staffs.by_person(@person.id).any?
       @project.project_staffs.where(:person_id => @person.id).delete_all
     else
-      ProjectStaff.create(:person_id => @person.id, :project_id => @project.id, :description => '', :hourly_rate => params[:hourly_rate])
+      ProjectStaff.create(:person_id => @person.id, :project_id => @project.id, :description => '', :hourly_rate => @person.hourly_rate)
     end
     render :nothing => true
   end

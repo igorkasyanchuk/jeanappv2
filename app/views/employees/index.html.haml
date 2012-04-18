@@ -2,9 +2,8 @@
   :plain
     $(".cb").live("change", function() {
       link = $(this).parents(".person").find(".remove_item_button:first");
-      rate = $(this).parents(".person").find(".rate_input:first").val();
       href = link.attr("href");
-      $.ajax({url: href, data: {hourly_rate: rate}});
+      $.ajax({url: href});
     });
 
 %h2.left== Manage Employees on #{@project.title}
@@ -20,11 +19,11 @@
       .full_person_name 
         %strong Person
       .rate
-        %strong Rate
+        %strong Hourly Rate
       .full_hours_count
         %strong Hours
       .amount
-        %strong Money
+        %strong Total
       .person_name.none
         %strong Actions
       .clear  
@@ -35,7 +34,8 @@
           = check_box_tag :user_id, 'checked', @project.project_staffs.by_person(person.id).any?, :class => 'cb'
         .full_person_name= link_to person.name, [current_user, person]
         .rate
-          = text_field_tag :rate, staff.try(:hourly_rate) || person.hourly_rate, :class => 'rate_input'
+          - rate = staff.present? ? staff.hourly_rate : person.hourly_rate
+          = rate.present? ? "#{number_to_currency(rate)} / h" : '-'
         .full_hours_count= person.total_hours_on @project
         .amount= number_to_currency(person.total_money_on(@project), :precision => 2)
         .person_name.none= link_to 'remove from project', toggle_employee_user_project_path(current_user, @project, :person_id => person), :remote => true, :class => 'remove_item_button'

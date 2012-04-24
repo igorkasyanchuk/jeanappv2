@@ -7,7 +7,15 @@
   =update_project_details(@project)
   =refresh_diagram(@project)
 
+== $ee = "#{escape_javascript(render :partial => '/projects/employees', :locals => { :project => @project })}";
 
 == $('.job.item').remove();
 == $('.jobs').append($e)
+
+== $('#manage_employees_container').html($ee);
+
 =clear_fields
+
+$("select").uniform(); 
+
+$('.new_job_form a.hide').trigger('click');

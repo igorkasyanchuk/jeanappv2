@@ -6,17 +6,22 @@ class JobsController < SecureController
     params[:job].delete(:project_id)
 
     staff = @project.project_staffs.by_person(params[:job][:person_id]).first
-    params[:job][:rate] = staff.hourly_rate
+    if staff && params[:job][:hours].present?
+      params[:job][:rate] = staff.hourly_rate
 
-    @job = @project.jobs.create params[:job]
+      @job = @project.jobs.create params[:job]
 
-    logger.info @job.errors.full_messages.inspect
-    create!  do |format|
-      format.js {}
+      logger.info @job.errors.full_messages.inspect
+      create!  do |format|
+        format.js {}
+      end
+    else
+      render :nothing => true
     end
   end
   
   def destroy
+    @project = resource.project
      destroy!  do |format|
       format.js {}
     end

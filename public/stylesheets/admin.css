@@ -251,7 +251,7 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
 /* line 321, ../../app/stylesheets/admin.sass */
 .staff .person .full_person_name {
   float: left;
-  width: 24%;
+  width: 34%;
 }
 /* line 327, ../../app/stylesheets/admin.sass */
 .staff .person .person_description {
@@ -282,17 +282,17 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
 /* line 359, ../../app/stylesheets/admin.sass */
 .staff .person .full_hours_count {
   float: left;
-  width: 10%;
+  width: 20%;
 }
 /* line 365, ../../app/stylesheets/admin.sass */
 .staff .person .amount {
   float: left;
-  width: 10%;
+  width: 20%;
 }
 /* line 371, ../../app/stylesheets/admin.sass */
 .staff .person .rate {
   float: left;
-  width: 10%;
+  width: 20%;
 }
 /* line 377, ../../app/stylesheets/admin.sass */
 .staff .person .rate input {
@@ -306,7 +306,7 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
 /* line 387, ../../app/stylesheets/admin.sass */
 .staff .person .hourly_rate {
   float: left;
-  width: 15%;
+  width: 25%;
 }
 /* line 393, ../../app/stylesheets/admin.sass */
 .staff .person .hours_total {

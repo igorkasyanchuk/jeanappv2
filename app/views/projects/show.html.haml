@@ -7,6 +7,8 @@
 
 .add.right{:style => 'margin-top: 2em'}
   = link_to 'Edit', edit_resource_path(@project), :class => 'edit_button'
+.add.right{:style => 'margin-top: 2em'}
+  = link_to 'Manage Employees', '#manage_employees_container', :class => 'add_button manage_employees'
 .clear
 
 = simple_format @project.description unless @project.description.blank?
@@ -17,10 +19,8 @@
 #info= render :partial => '/projects/info', :locals => { :project => @project }
 
 %h2.left Employees
-.right.add
-  = link_to 'Manage Employees', project_employees_path(@project), :class=> "add_button"
+.right.add= link_to 'Log Work', '#', :class => 'add_button', :to => '.new_job_form'
 .clear
-
 .staff.jobs
   = render 'jobs/jobs', :project => @project
 = render 'jobs/form', :project => @project
@@ -69,10 +69,16 @@
       = f.buttons do
         = f.submit 'Add new invoice'
         = link_to 'Hide', '#', :class => 'hide cancel_button'
+
+.none
+  #manage_employees_container
+    = render :partial => '/projects/employees', :locals => { :project => @project }   
+
       
 - content_for :on_ready do
   init_add_form();
   init_add_invoice();
   init_project_show_page();
+  init_manage_employees();
 
 = render :partial => '/notes/notes', :locals => { :noteable => @project }

@@ -3526,3 +3526,12 @@ legend.label label {
   font-size: 14px;
   text-shadow: none;
 }
+
+/* line 266, ../../app/stylesheets/application.sass */
+#manage_employees_container {
+  text-align: left;
+}
+/* line 268, ../../app/stylesheets/application.sass */
+#manage_employees_container a {
+  text-align: left;
+}

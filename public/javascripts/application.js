@@ -252,6 +252,17 @@ function init_add_invoice() {
    });
 };
 
+function init_manage_employees() {
+   $('#manage_employees_container .hide').bind('click', function() {
+     $.colorbox.close();
+     return false;
+   });
+   $('.manage_employees').attr('href', '').click(function(e) {
+     $.fn.colorbox({href: '#manage_employees_container', inline: true, width: '800px'}); 
+     return false;
+   });
+};
+
 function init_calendar_form() {
   $('td.day:not(.total_sum)').live('click', function() {
      form = '#day-form-' + $(this).attr('data-day-id') + ' form';

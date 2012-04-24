@@ -1,0 +1,44 @@
+= content_for :on_ready do
+  :plain
+    $(".cb").live("change", function() {
+      link = $(this).parents(".person").find(".remove_item_button:first");
+      href = link.attr("href");
+      $.ajax({url: href});
+    });
+
+%h2.left Manage Employees
+
+.clear
+
+.staff
+  - if current_user.people.count > 0
+    .person
+      .checkbox
+        &nbsp;
+      .full_person_name 
+        %strong Person
+      .rate
+        %strong Hourly Rate
+      .full_hours_count
+        %strong Hours
+      .amount
+        %strong Total
+      .person_name.none
+        %strong Actions
+      .clear  
+    - current_user.people.by_name.each do |person|
+      - staff = project.project_staffs.by_person(person.id).first
+      .person{ :class => cycle(:odd, :even), :id => "staff-#{person.id}" }
+        .checkbox
+          = check_box_tag :user_id, 'checked', project.project_staffs.by_person(person.id).any?, :class => 'cb'
+        .full_person_name= link_to person.name, [current_user, person]
+        .rate
+          - rate = staff.present? ? staff.hourly_rate : person.hourly_rate
+          = rate.present? ? "#{number_to_currency(rate)} / h" : '-'
+        .full_hours_count= person.total_hours_on project
+        .amount= number_to_currency(person.total_money_on(project), :precision => 2)
+        .person_name.none= link_to 'remove from project', toggle_employee_user_project_path(current_user, project, :person_id => person), :remote => true, :class => 'remove_item_button'
+        .clear
+  - else
+    .staff_list_is_empty
+      %i List is empty. First try to add employee.

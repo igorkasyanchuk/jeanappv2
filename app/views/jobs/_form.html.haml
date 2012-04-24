@@ -1,5 +1,5 @@
 .add_more_block
-  = semantic_form_for Job.new, :remote => true do |f|
+  = semantic_form_for Job.new, :remote => true, :html => { :class => 'none new_job_form' } do |f|
     - f.inputs do
       - if controller_name == 'projects'
         = f.input :person_id, :collection => project.people, :label => 'Project Collaborator'
@@ -11,6 +11,8 @@
       = f.input :comment, :input_html => { :rows => '2', :cols => '40' }
     - f.buttons do
       = f.submit 'Log work'
+      - if controller_name == 'projects' && action_name == 'show'
+        = link_to 'Hide', '#', :class => 'hide cancel_button'
 
 - if controller_name == 'projects'
   - content_for :js do

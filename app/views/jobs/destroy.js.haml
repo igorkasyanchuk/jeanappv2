@@ -3,3 +3,10 @@
 == $ee = "#{escape_javascript(render :partial => '/projects/employees', :locals => { :project => @project })}";
 
 == $('#manage_employees_container').html($ee);
+
+- if @project.jobs.count > 0
+  $('.person_list').show();
+  $('.own_list_is_empty').hide();
+- else
+  $('.person_list').hide();
+  $('.own_list_is_empty').show();

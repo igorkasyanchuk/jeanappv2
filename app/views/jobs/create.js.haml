@@ -14,8 +14,16 @@
 
 == $('#manage_employees_container').html($ee);
 
+- if @project.jobs.count > 0
+  $('.person_list').show();
+  $('.own_list_is_empty').hide();
+- else
+  $('.person_list').hide();
+  $('.own_list_is_empty').show();
+
 =clear_fields
 
 $("select").uniform(); 
 
 $('.new_job_form a.hide').trigger('click');
+

@@ -1,15 +1,36 @@
-.person
-  .person_name
-    %strong Name
-  .person_description
-    %strong Description
-  .hours_count
-    %strong Hours
-  .amount
-    %strong Money
-  .state
-    %strong Status
-  .controls
-    %strong Actions
-  .clear
-=render :partial => 'jobs/projects_job', :collection => project.jobs, :as => :job
+- if project.jobs.count > 0
+  .person.person_list
+    .person_name
+      %strong Name
+    .person_description
+      %strong Description
+    .hours_count
+      %strong Hours
+    .amount
+      %strong Money
+    .state
+      %strong Status
+    .controls
+      %strong Actions
+    .clear
+  = render :partial => 'jobs/projects_job', :collection => project.jobs, :as => :job
+  .own_list_is_empty.none
+    %i List is empty.  
+
+- else
+  .person.person_list.none
+    .person_name
+      %strong Name
+    .person_description
+      %strong Description
+    .hours_count
+      %strong Hours
+    .amount
+      %strong Money
+    .state
+      %strong Status
+    .controls
+      %strong Actions
+    .clear
+  .own_list_is_empty
+    %i List is empty.

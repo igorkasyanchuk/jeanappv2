@@ -13,11 +13,3 @@
       = f.submit 'Log work'
       - if controller_name == 'projects' && action_name == 'show'
         = link_to 'Hide', '#', :class => 'hide cancel_button'
-
-- if controller_name == 'projects'
-  - content_for :js do
-    == var people_rates = {#{project.people.map{|person| "#{person.id}:#{person.hourly_rate}" }.join(',')}};
-
-    $(document).ready(function(){  var person_select =  $('#job_person_id');  person_select.change(function(){   $('#job_rate').val(people_rates[person_select.val()])   });   });
-
-

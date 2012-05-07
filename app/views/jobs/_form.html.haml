@@ -1,5 +1,5 @@
 .add_more_block
-  = semantic_form_for Job.new, :remote => true, :html => { :class => 'none new_job_form' } do |f|
+  = semantic_form_for Job.new, :remote => true, :html => { :class => "#{controller_name == 'other_projects' ? '' : 'none'} new_job_form" } do |f|
     - f.inputs do
       - if controller_name == 'projects'
         = f.input :person_id, :collection => project.people, :label => 'Project Collaborator'

@@ -91,7 +91,7 @@ class Project < ActiveRecord::Base
   end
 
   def jobs_by person
-    jobs.where :person_id => person
+    jobs.where(:person_id => person).order('FIELD(jobs.state, "pending", "approved", "paid"), created_at DESC')
   end
 
   def total_hours_by_person(p)

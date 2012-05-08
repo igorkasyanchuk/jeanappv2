@@ -92,7 +92,7 @@ class Person < ActiveRecord::Base
   end
 
   def jobs_on project
-    jobs.where :project_id => project
+    jobs.where(:project_id => project).order('FIELD(jobs.state, "pending", "approved", "paid"), created_at DESC')
   end
 
   def as_user

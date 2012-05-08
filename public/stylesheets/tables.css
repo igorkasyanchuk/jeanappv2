@@ -85,15 +85,15 @@ table.projects tr td.icon img, table.projects tr th.icon img {
 
 /* line 69, ../../app/stylesheets/tables.sass */
 .pending_status {
-  background: #f89406;
+  background: red;
 }
 
 /* line 71, ../../app/stylesheets/tables.sass */
 .approved_status {
-  background: #9d261d;
+  background: green;
 }
 
 /* line 73, ../../app/stylesheets/tables.sass */
 .paid_status {
-  background: #46a546;
+  background: grey;
 }

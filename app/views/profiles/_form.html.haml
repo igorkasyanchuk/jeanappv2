@@ -3,8 +3,10 @@
   = f.input :first_name
   = f.input :last_name
   = f.input :address
-  = f.input :taxes
-  = f.input :hourly_rate, :label => 'Hourly Rate (as employee, $/hour)'
+  - if current_user.owner?
+    = f.input :taxes
+  - else
+    = f.input :hourly_rate, :label => 'Hourly Rate (as employee, $/hour)'
 
 - f.buttons do
   = f.submit "Update Profile"

@@ -9,7 +9,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_back_or_default(user_projects_path(@user))
+      if current_user.owner?
+        redirect_back_or_default(user_projects_path(@user))
+      else
+        redirect_to [@user, :other_projects]
+      end
     else
       render :action => :new
     end

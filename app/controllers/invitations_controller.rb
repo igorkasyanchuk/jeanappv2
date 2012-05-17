@@ -1,6 +1,6 @@
 class InvitationsController < SecureController
 
-  skip_before_filter :require_user, :check_user_permissions, :only => :confirm
+  skip_before_filter :require_user, :check_user_permissions, :only => [:confirm, :user_confirm]
 
   def confirm
     @invitation = Invitation.find_by_key(params[:key])
@@ -17,9 +17,19 @@ class InvitationsController < SecureController
       flash[:notice] = 'Invitation was expired!'
       redirect_to root_url
     end
-
-
   end
+
+  def user_confirm
+    @user = User.find_by_invitation_uuid(params[:key])
+    if @user.present?
+      UserSession.create(@user)
+      redirect_to edit_profile_path(@user)
+    else
+      flash[:notice] = "Can't find user!"
+      redirect_to root_url
+    end
+  end
+
 
   def create
     @invitation = Invitation.new(params[:invitation])

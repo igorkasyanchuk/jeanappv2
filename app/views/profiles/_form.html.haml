@@ -6,6 +6,11 @@
   - if current_user.owner?
     = f.input :taxes
   - else
+    = f.input :dob, :as => :date, :label => 'Birthday', :discard_year => true
+    = f.input :country, :input_html => {:class => 'short_field'}, :priority_countries => []
+    = f.input :city, :input_html => {:class => 'short_field'}
+    = f.input :time_zone, :as => :select, :collection => CUSTOM_TIME_ZONES, :input_html => {:class => 'short_field'}, :include_blank => false, :label => 'Time Zone'
+    = f.input :skype, :input_html => {:class => 'short_field'}
     = f.input :hourly_rate, :label => 'Hourly Rate (as employee, $/hour)'
 
 - f.buttons do

@@ -47,5 +47,6 @@ TrackMyTime::Application.routes.draw do
 
   resources :profiles, :only => [:edit, :update]
   match "/invitations/confirm/:key", :to => "invitations#confirm", :as => "confirm_invitation"
+  match "/user-invitations/confirm/:key", :to => "invitations#user_confirm", :as => "user_confirm_invitation"
   
 end

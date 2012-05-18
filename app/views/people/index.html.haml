@@ -28,7 +28,8 @@
         %th= sortable 'email', 'Email', { :tag => params[:tag] }
         %th= sortable 'hourly_rate', 'Hourly Rate', { :tag => params[:tag] }
         %th= sortable 'workload', 'Workload', { :tag => params[:tag] }
-    
+        %th Invitation Status
+
     %tbody
       - for person in @people
         %tr{ :class => cycle(:odd, :even) }
@@ -37,6 +38,7 @@
           %td= raw auto_link person.email
           %td= number_to_currency(person.hourly_rate) || 'not set'
           %td= person.workload
+          %td= person.invitation_uuid.blank? ? 'accepted' : 'pending'
 
 - else
   %p

@@ -29,6 +29,7 @@ class Person < ActiveRecord::Base
   before_save :geocode_it!, :set_employee_flag!, :set_default_password!
 
   scope :by_name, order(:first_name)
+  scope :with_invitation_accepted, where("invitation_uuid is not NULL AND invitation_uuid <> ''")
 
   def name
     "#{self.first_name} #{self.last_name}"

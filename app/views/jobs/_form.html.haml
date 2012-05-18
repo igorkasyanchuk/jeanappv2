@@ -2,7 +2,7 @@
   = semantic_form_for Job.new, :remote => true, :html => { :class => "#{controller_name == 'other_projects' ? '' : 'none'} new_job_form" } do |f|
     - f.inputs do
       - if controller_name == 'projects'
-        = f.input :person_id, :collection => project.people, :label => 'Project Collaborator'
+        = f.input :person_id, :collection => project.people, :label => 'Employee'
       -else
         = f.hidden_field :person_id, :value => user.id
       = f.hidden_field :project_id, :value => project.id

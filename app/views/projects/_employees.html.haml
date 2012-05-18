@@ -26,7 +26,7 @@
       .person_name.none
         %strong Actions
       .clear  
-    - current_user.people.by_name.each do |person|
+    - current_user.people.by_name.with_invitation_accepted.each do |person|
       - staff = project.project_staffs.by_person(person.id).first
       .person{ :class => cycle(:odd, :even), :id => "staff-#{person.id}" }
         .checkbox

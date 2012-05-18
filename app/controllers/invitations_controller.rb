@@ -22,6 +22,8 @@ class InvitationsController < SecureController
   def user_confirm
     @user = User.find_by_invitation_uuid(params[:key])
     if @user.present?
+      @user.invitation_uuid = nil
+      @user.save(:validate => false)
       UserSession.create(@user)
       redirect_to edit_profile_path(@user)
     else

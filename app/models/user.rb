@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     config.crypto_provider = Authlogic::CryptoProviders::BCrypt
   end
 
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :address, :hourly_rate, :taxes, :user_type
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :address, :hourly_rate, :taxes, :user_type,
+    :dob, :country, :city, :time_zone, :skype
 
   validates_presence_of :email
   validates_presence_of :first_name

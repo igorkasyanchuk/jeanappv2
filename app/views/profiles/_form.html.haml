@@ -1,5 +1,8 @@
 - f.inputs do
   = f.input :email, :autocorrect => 'off', :autocapitalize => 'off'
+  - if controller_name == 'profiles'
+    = f.input :password
+    = f.input :password_confirmation
   = f.input :first_name
   = f.input :last_name
   = f.input :address

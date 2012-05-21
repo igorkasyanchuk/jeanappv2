@@ -1,12 +1,14 @@
 %p
-  Hello #{@user.first_name} #{@user.last_name}! You are invited to JeanApp.
-  
-%p
-  Click 
-  = link_to "here", user_confirm_invitation_url(@user.invitation_uuid)
-  to fill out profile information.
-  %br
-  Your temporary password: 123456xx.
+  Hello #{@user.first_name} #{@user.last_name}! 
 
 %p
-  Please change it after confirmation on your profile page.
+  You are invited to Jean App.
+  
+%p
+  Click the link below to accept and complete your profile.
+
+%p  
+  = link_to user_confirm_invitation_url(@user.invitation_uuid), user_confirm_invitation_url(@user.invitation_uuid)
+
+%p
+  Your temporary password: 123456xx.

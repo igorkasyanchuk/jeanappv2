@@ -18,11 +18,12 @@ class PeopleController < SecureController
   end
 
   def create
-    params[:person] = params[:person].merge :password => "123456xx", :password_confirmation => "123456xx"
+    password = (0...8).map{65.+(rand(25)).chr}.join.downcase
+    params[:person] = params[:person].merge :password => password, :password_confirmation => password
     #raise params[:person].inspect
     super
     unless @person.new_record?
-      Invitations.employee_added_invitation(@person).deliver 
+      Invitations.employee_added_invitation(@person, password).deliver 
       @person.users << current_user
     end
   end

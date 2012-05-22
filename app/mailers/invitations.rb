@@ -7,8 +7,9 @@ class Invitations < ActionMailer::Base
     mail(:to => invitation.email, :subject => "Invitation to Jean")
   end
 
-  def employee_added_invitation(user)
+  def employee_added_invitation(user, password)
     @user = user
+    @password = password
     @user.invitation_uuid = (0...8).map{65.+(rand(25)).chr}.join
     @user.save(:validate => false)
     mail(:to => @user.email, :subject => "Invitation to Jean App")

@@ -16,6 +16,7 @@ class Job < ActiveRecord::Base
   scope :since,    lambda { |time| where('jobs.created_at >= ?', time) }
   scope :before,   lambda { |time| where('jobs.created_at < ?',  time) }
   scope :by_date, lambda { |date| where(['date(created_at) = date(?)', date])}
+  scope :by_user, lambda {|user| where(:person_id => user.id)} 
 
   def cost
     @cost ||= rate * hours

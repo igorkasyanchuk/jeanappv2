@@ -66,6 +66,10 @@ class Project < ActiveRecord::Base
     self.jobs.inject(0) {|sum, e| sum += e.hours }
   end
 
+  def employee_hours_total(user)
+    self.jobs.by_user(user).inject(0) {|sum, e| sum += e.hours }
+  end
+
   def amount_total
     self.jobs.inject(0) {|sum, e| sum += e.cost }
   end

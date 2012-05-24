@@ -2,6 +2,8 @@
 .add.right= link_to 'Back', [current_user, :other_projects], :class => 'list_button'
 .clear
 
+%p= @project.description
+
 - staff = @project.project_staffs.by_person(current_user.id).first
 - if staff
   %p Your Rate: #{number_to_currency staff.hourly_rate}

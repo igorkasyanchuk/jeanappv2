@@ -22,7 +22,17 @@ $(function() {
     numberOfMonths: 2
   });  
   $('.flash').delay(3000).slideUp('fast').live('click', function() {$(this).slideUp('fast')});
+  handle_enters();
 });
+
+function handle_enters() {
+  $('input').live('keypress', function(e) {
+    c = e.which ? e.which : e.keyCode;
+    if (c == 13) {
+      $(this).parents("form").submit();
+    };
+  });
+};
 
 function init_add_form() {
   $('.add a').live('click', function() {

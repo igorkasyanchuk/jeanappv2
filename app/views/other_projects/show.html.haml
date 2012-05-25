@@ -1,4 +1,4 @@
-%h1.left.no_bottom_margin.margin_bottom_30px.margin_top_1em= @project.title
+%h1.left.no_bottom_margin.margin_bottom_30px.margin_top_1em== #{@project.title} (#{@project.project_status})
 .add.right= link_to 'Back', [current_user, :other_projects], :class => 'list_button'
 .clear
 

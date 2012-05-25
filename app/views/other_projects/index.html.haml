@@ -6,6 +6,7 @@
       %thead
         %tr
           %th Project Name
+          %th Status
           %th Total Hours
           %th Amount
           %th Actions
@@ -13,6 +14,7 @@
         - @projects.each do |project|
           %tr
             %td= link_to project.title, user_other_project_path(current_user, project)
+            %td= project.project_status
             %td= project.employee_hours_total(current_user)
             %td= number_to_currency(project.amount_total, :precision => 2)
             %td

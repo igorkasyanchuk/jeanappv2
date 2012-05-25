@@ -187,4 +187,8 @@ class Project < ActiveRecord::Base
     self.client && self.client.present?
   end
 
+  def project_status
+    completed_on ? "completed: #{completed_on}" : 'in progress'
+  end
+
 end

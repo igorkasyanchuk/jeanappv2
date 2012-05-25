@@ -85,6 +85,7 @@
       %th Money
       %th Description
     - @person.jobs.backward.each do |p|
+      - next unless p.project
       %tr
         %td= p.created_at.to_s(:long)
         %td= link_to p.project.title, [current_user, p.project]

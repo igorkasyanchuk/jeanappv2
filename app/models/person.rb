@@ -87,7 +87,7 @@ class Person < ActiveRecord::Base
   def workload
     #raise jobs[0].inspect
     _projects = 0
-    self.jobs.collect{|ps| ps.project}.uniq.each do |p|
+    self.jobs.collect{|ps| ps.project}.uniq.compact.each do |p|
       _projects += 1 unless p.completed?
     end
     _projects

@@ -7,6 +7,7 @@ TrackMyTime::Application.routes.draw do
   root :controller => 'user_sessions', :action => 'new'
   
   resources :users do
+    resources :payments, :only => [:index]
     resources :earnings, :only => [:index]
     resources :time_reports, :only => [:index]
     resources :people

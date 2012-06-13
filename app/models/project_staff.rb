@@ -12,6 +12,7 @@ class ProjectStaff < ActiveRecord::Base
   scope :by_date, lambda { |date| where(['date(created_at) = date(?)', date])}
   scope :by_projects, lambda { |projects| where(:project_id => projects) }
   scope :by_person, lambda { |person_id| where(:person_id => person_id) }
+  scope :by_month, lambda { |date| where(:created_at => date.beginning_of_month..date.end_of_month) }
 
   #before_save :set_rate
 

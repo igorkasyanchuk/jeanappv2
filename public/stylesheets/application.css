@@ -3535,3 +3535,15 @@ legend.label label {
 #manage_employees_container a {
   text-align: left;
 }
+
+/* line 271, ../../app/stylesheets/application.sass */
+.project_payment_info {
+  padding-top: 21px;
+  font-style: italic;
+}
+
+/* line 275, ../../app/stylesheets/application.sass */
+.total_paid_this_month {
+  padding-top: 22px;
+  font-style: italic;
+}

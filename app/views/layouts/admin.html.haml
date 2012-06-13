@@ -12,6 +12,7 @@
         %li.projects_menu= link_to 'Projects', [current_user, :projects]
         %li.clients_menu= link_to 'Clients', [current_user, :clients]
         %li.people_menu= link_to 'Employees', [current_user, :people]
+        %li.payments_menu= link_to 'Payments', [current_user, :payments]
 
       - else
         %li.other_projects_menu= link_to 'Projects', [current_user, :other_projects]

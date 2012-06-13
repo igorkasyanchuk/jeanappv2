@@ -1,0 +1,25 @@
+= title "Payments"
+
+%h1.left Payments
+.right.total_paid_this_month== Total this Month - Paid: #{number_to_currency current_user.paid_in_month, :precision => 2} / Pending: #{number_to_currency current_user.pending_or_approved_in_month, :precision => 2}
+.clear
+
+%hr
+
+.staff.jobs
+  - @projects.each do |project|
+    .clear
+    %h2.left= link_to project.title, [current_user, project]
+    .right.project_payment_info== Total - Paid: #{number_to_currency project.amount_paid, :precision => 2} / Pending: #{number_to_currency project.amount_pending, :precision => 2}
+    .clear
+    = render 'jobs/payment_jobs', :project => project
+    %br
+    %br
+    %hr
+      
+- content_for :on_ready do
+  init_add_form();
+  init_add_invoice();
+  init_project_show_page();
+  init_manage_employees();
+

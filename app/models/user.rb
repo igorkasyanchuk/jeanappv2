@@ -86,6 +86,14 @@ class User < ActiveRecord::Base
     [mine, contractors]
   end
 
+  def paid_in_month
+    Job.by_projects(self.project_ids).paid.by_month(Date.today).inject(0){|res, e| res += e.cost; res}
+  end
+
+  def pending_or_approved_in_month
+    Job.by_projects(self.project_ids).pending_or_approved.by_month(Date.today).inject(0){|res, e| res += e.cost; res}
+  end
+
   def as_person
     becomes Person
   end

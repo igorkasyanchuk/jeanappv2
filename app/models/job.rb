@@ -17,6 +17,12 @@ class Job < ActiveRecord::Base
   scope :before,   lambda { |time| where('jobs.created_at < ?',  time) }
   scope :by_date, lambda { |date| where(['date(created_at) = date(?)', date])}
   scope :by_user, lambda {|user| where(:person_id => user.id)} 
+  scope :pending, where(:state => 'pending')
+  scope :approved, where(:state => 'approved')
+  scope :paid, where(:state => 'paid')
+  scope :pending_or_approved, where(:state => ['pending', 'approved'])
+  scope :by_month, lambda { |date| where(:created_at => date.beginning_of_month..date.end_of_month) }  
+  scope :by_projects, lambda { |projects| where(:project_id => projects) }
 
   def cost
     @cost ||= rate * hours

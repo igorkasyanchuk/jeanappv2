@@ -74,6 +74,18 @@ class Project < ActiveRecord::Base
     self.jobs.inject(0) {|sum, e| sum += e.cost }
   end
 
+  def amount_paid
+    self.jobs.paid.inject(0) {|sum, e| sum += e.cost }
+  end
+
+  def amount_pending
+    self.jobs.pending.inject(0) {|sum, e| sum += e.cost }
+  end
+
+  def amount_approved
+    self.jobs.approved.inject(0) {|sum, e| sum += e.cost }
+  end
+
   def invoiced
     self.invoices.sum(:cached_invoice_amount)
   end

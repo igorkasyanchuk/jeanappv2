@@ -8,5 +8,6 @@
     = f.input :started_on, :input_html => {:class => 'date_picker'}, :as => :string
     = f.input :completed_on, :input_html => {:class => 'date_picker'}, :as => :string
     = f.input :budget, :input_html => {:class => 'short_field'}
+    = f.input :internal, :label => 'Internal Project'
   - f.buttons do
     = f.submit f.object.new_record? ? 'Create' : "Update"

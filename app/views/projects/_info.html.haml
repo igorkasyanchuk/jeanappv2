@@ -1,6 +1,7 @@
-= content_for :on_ready do
-  !== show_money_chart(#{project.money_chart.to_json});
-  !== show_time_chart(#{project.time_chart.to_json});
+- unless project.internal
+  = content_for :on_ready do
+    !== show_money_chart(#{project.money_chart.to_json});
+    !== show_time_chart(#{project.time_chart.to_json});
 
 .project_info
   .w49.left

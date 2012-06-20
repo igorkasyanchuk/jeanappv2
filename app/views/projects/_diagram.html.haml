@@ -1,7 +1,7 @@
-- content_for :js do
+= content_for :js do
   gvChartInit();
   
-- content_for :on_ready do
+= content_for :on_ready do
   == setTimeout("refreshChart([#{project.profit},#{project.amount_total},#{project.project_expenses}], '#{escape_javascript(project.title)}');", 1);
 
 .digram_data= render :partial => '/projects/diagram_data', :locals => { :project => project }

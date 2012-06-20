@@ -42,22 +42,23 @@
         %span #{number_to_currency -(project.project_expenses), :precision => 2}
         .clear
       %li.divider
+      - unless project.internal
+        %li
+          %strong.property_name Income
+          %span= number_to_currency project.income, :precision => 2
+          .clear
+        %li
+          %strong.property_name Hourly Rate
+          %span!= (project.personal_rate.infinite? || project.personal_rate.nan?) ? '&mdash;' : number_to_currency(project.personal_rate, :precision => 2)
+          .clear
+          %li.divider
+        %li
+          %strong.property_name Taxes (#{current_user.taxes}%)
+          %span= number_to_currency -(project.taxes), :precision => 2
+          .clear
+        %li.divider.summarize
       %li
-        %strong.property_name Income
-        %span= number_to_currency project.income, :precision => 2
-        .clear
-      %li
-        %strong.property_name Hourly Rate
-        %span!= (project.personal_rate.infinite? || project.personal_rate.nan?) ? '&mdash;' : number_to_currency(project.personal_rate, :precision => 2)
-        .clear
-      %li.divider
-      %li
-        %strong.property_name Taxes (#{current_user.taxes}%)
-        %span= number_to_currency -(project.taxes), :precision => 2
-        .clear
-      %li.divider.summarize
-      %li
-        %strong Profit
+        %strong= project.internal ? 'Cost' : 'Profit'
         %span.strong== #{(project.profit > 0) ? '+' : ''}#{number_to_currency project.profit, :precision => 2}
         .clear
     .info_chart

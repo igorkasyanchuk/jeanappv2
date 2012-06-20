@@ -25,11 +25,13 @@
   
   %tbody
     - for project in @projects
-      %tr{ :class => "#{cycle(:odd, :even)} #{project.completed? ? 'completed' : ''}" }
+      %tr{ :class => "#{cycle(:odd, :even)} #{project.completed? ? 'completed' : ''}", :internal => "#{project.internal ? 'yes' : 'no'}" }
         %td.icon{:width => '20px'}
           = check_box_tag "on_off_#{project.id}", project.turned_on?, project.turned_on?, :url => toggle_project_user_project_path(current_user, project, :filter => params['filter']), :class => 'project_on_off'
         %td
           = link_to project.title, [current_user, project], :class => 'bold_text'
+          - if project.internal
+            %span.internal internal
         %td
           - if project.client.present?
             = link_to project.client.name, [current_user, project.client]
@@ -49,4 +51,4 @@
   - rejected_projects = @projects.reject{|p| !p.turned_on?}
 
   - if rejected_projects.size > 0
-    = render :partial => '/shared/projects_summary', :locals => { :rejected_projects => rejected_projects, :add_column => true }
+    = render :partial => '/shared/projects_summary', :locals => { :rejected_projects => rejected_projects.reject(&:internal), :add_column => true }

@@ -35,7 +35,9 @@ class UserSessionsController < ApplicationController
   
   private
     def redirect_if_user
-      redirect_to user_projects_path(current_user) if current_user
+      if current_user
+        redirect_to current_user.owner? ? user_projects_path(current_user) : [current_user, :other_projects]
+      end
     end
   
 end

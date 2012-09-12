@@ -86,6 +86,10 @@ class Project < ActiveRecord::Base
     self.jobs.approved.inject(0) {|sum, e| sum += e.cost }
   end
 
+  def amount_owe
+    self.amount_pending + self.amount_approved
+  end
+
   def invoiced
     self.invoices.sum(:cached_invoice_amount)
   end
@@ -149,7 +153,11 @@ class Project < ActiveRecord::Base
   end
 
   def profit
-    self.income - self.taxes
+    if self.internal
+      self.income
+    else
+      self.income - self.taxes
+    end
   end
 
   def status

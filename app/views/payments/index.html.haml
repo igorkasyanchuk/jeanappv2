@@ -1,6 +1,9 @@
 = title "Payments"
 
 %h1.left Payments
+.clear
+
+%h2.left== Grand Total Owe: #{number_to_currency @projects.collect{|e| e.amount_owe}.sum ,:precision => 2}
 .right.total_paid_this_month== Total this Month - Paid: #{number_to_currency current_user.paid_in_month, :precision => 2} / Pending: #{number_to_currency current_user.pending_or_approved_in_month, :precision => 2}
 .clear
 
@@ -8,9 +11,10 @@
 
 .staff.jobs
   - @projects.each do |project|
+    - next if project.jobs.pending_or_approved.count == 0
     .clear
-    %h2.left= link_to project.title, [current_user, project]
-    .right.project_payment_info== Total - Paid: #{number_to_currency project.amount_paid, :precision => 2} / Pending: #{number_to_currency project.amount_pending, :precision => 2}
+    %h2{:style => 'padding-bottom: 0; margin-bottom: 0;'}= link_to project.title, [current_user, project]
+    .project_payment_info== Total - Paid: #{number_to_currency project.amount_paid, :precision => 2} / Pending: #{number_to_currency project.amount_pending, :precision => 2} / Approved: #{number_to_currency project.amount_approved, :precision => 2} / <strong>Total Owe:</strong> #{number_to_currency project.amount_owe, :precision => 2}
     .clear
     = render 'jobs/payment_jobs', :project => project
     %br

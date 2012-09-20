@@ -30,7 +30,7 @@ TrackMyTime::Application.routes.draw do
       resources :own_hours do
         collection do
           get :start_work
-          get :end_work
+          get :stop_work
           get :cancel_work
         end
       end

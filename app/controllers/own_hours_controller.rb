@@ -17,12 +17,12 @@ class OwnHoursController < SecureController
     parent.start_work!
   end
 
-  def end_work
+  def stop_work
 
   end
 
   def cancel_work
-    parent.end_work!
+    parent.stop_work!
   end
   
 end

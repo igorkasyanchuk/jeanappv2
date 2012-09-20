@@ -215,8 +215,12 @@ class Project < ActiveRecord::Base
     update_attribute :work_started_at, Time.now
   end
 
-  def end_work!
+  def stop_work!
     update_attribute :work_started_at, nil
+  end
+
+  def work_started?
+    work_started_at.present?
   end
 
   def hours_working

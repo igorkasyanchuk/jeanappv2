@@ -26,6 +26,9 @@
 = render 'jobs/form', :project => @project
 
 %h2.left Own Hours
+.right.work_action.none= link_to 'Cancel Work', cancel_work_user_project_own_hours_path(current_user, @project), :class => 'work_button', :remote => true
+.right.work_action.none= link_to 'End Work', end_work_user_project_own_hours_path(current_user, @project), :class => 'work_button', :remote => true
+.right.work_action= link_to 'Start Work', start_work_user_project_own_hours_path(current_user, @project), :class => 'work_button', :remote => true
 .right.add= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'
 .clear
 = render :partial => '/own_hours/own_hours', :locals => { :project => @project }

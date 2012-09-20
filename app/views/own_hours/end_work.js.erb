@@ -1,0 +1,9 @@
+/*
+   <%= render :partial => 'cancel_work' %>
+ */
+$('#own_hour_hours_count').val('<%= parent.hours_working %>')
+
+if(!$('.own_hour_form').is(':visible')){
+  $('a:contains("Add Own Hours")').trigger('click');
+}
+

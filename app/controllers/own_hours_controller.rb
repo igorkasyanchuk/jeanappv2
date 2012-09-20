@@ -12,5 +12,17 @@ class OwnHoursController < SecureController
       format.js {}
     end
   end
+
+  def start_work
+    parent.start_work!
+  end
+
+  def end_work
+
+  end
+
+  def cancel_work
+    parent.end_work!
+  end
   
 end

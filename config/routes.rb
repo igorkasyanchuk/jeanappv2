@@ -27,7 +27,13 @@ TrackMyTime::Application.routes.draw do
       resources :expenses
       resources :invoices
       resources :project_staffs
-      resources :own_hours
+      resources :own_hours do
+        collection do
+          get :start_work
+          get :end_work
+          get :cancel_work
+        end
+      end
       resources :invitations
     end
     resources :notes

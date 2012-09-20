@@ -211,4 +211,16 @@ class Project < ActiveRecord::Base
     completed_on ? "completed: #{completed_on}" : 'in progress'
   end
 
+  def start_work!
+    update_attribute :work_started_at, Time.now
+  end
+
+  def end_work!
+    update_attribute :work_started_at, nil
+  end
+
+  def hours_working
+    ((Time.now- work_started_at) / 3600).round(1) unless work_started_at.nil?
+  end
+
 end

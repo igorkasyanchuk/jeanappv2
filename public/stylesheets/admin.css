@@ -315,7 +315,7 @@ ul.admin_actions li:hover, ul.admin_actions li.selected {
 }
 
 /* line 401, ../../app/stylesheets/admin.sass */
-.add {
+.add, .work_action {
   font-size: 1.4em;
   font-weight: bold;
   margin-top: 16px;

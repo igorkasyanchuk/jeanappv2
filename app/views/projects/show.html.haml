@@ -34,7 +34,11 @@
 
 .right.work_action{ :class => @project.work_started? ? 'none' : '' }
   = link_to 'Log Manual Time', start_work_user_project_own_hours_path(current_user, @project), :class => 'start_work_button', :remote => true
-
+.right.stopwatch.none
+  Time Spent:
+  %span
+    - if @project.time_working.present?
+      = (@project.time_working * 1000).round
 .right.add= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'
 .clear
 = render :partial => '/own_hours/own_hours', :locals => { :project => @project }
@@ -43,7 +47,7 @@
     -#= float_to_duration(@project.time_working) if @project.time_working.present? 
     = f.inputs do
       -#= f.input :hours_count
-      = f.input :duration
+      = f.input :duration, :hint => 'format: HH:MM:SS'
       = f.input :description, :input_html => { :rows => '2', :cols => '40' }
     = f.buttons do
       = f.submit 'Add own hours'
@@ -91,5 +95,8 @@
   init_add_invoice();
   init_project_show_page();
   init_manage_employees();
+  init_own_hours_stopwatch();
 
 = render :partial => '/notes/notes', :locals => { :noteable => @project }
+
+= javascript_include_tag 'jquery.stopwatch'

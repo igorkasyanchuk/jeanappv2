@@ -417,3 +417,27 @@ function show_time_chart(chart) {
 function init_project_show_page() {
   $("strong.expand").live("click", function() {  $( $(this).attr("data-class") ).slideToggle(); $(this).toggleClass('expand_up'); });
 };
+
+function init_own_hours_stopwatch() {
+  var container =  $('.stopwatch span')
+  var init_value = container.html()
+  container.stopwatch().stopwatch('destroy')
+  if(init_value.replace('') != ''){
+    container.stopwatch({startTime: Number(init_value)}).stopwatch('start')
+    setTimeout(function() {container.parent().removeClass('none')}, 1000)
+  }
+}
+
+function start_own_hours_stopwatch(){
+  var container =  $('.stopwatch span')
+  container.html('0')
+  init_own_hours_stopwatch()
+  container.parent().removeClass('none');
+}
+
+function stop_own_hours_stopwatch(){
+  var container =  $('.stopwatch span')
+  container.stopwatch().stopwatch('destroy')
+  container.html('')
+  container.parent().addClass('none');
+}

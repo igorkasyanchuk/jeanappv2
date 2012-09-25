@@ -92,5 +92,15 @@ BASE
     end
   end
 
+  def number_to_duration number
+    hours = (number / 3600).floor
+    #raise hours.inspect
+    minutes = ((number - hours * 3600) / 60).floor
+    seconds = (number - hours * 3600 - minutes * 60).round
+
+
+    [hours, minutes, seconds].map{|n| "%02d" % n.to_s }.join(':')
+  end
+
 
 end

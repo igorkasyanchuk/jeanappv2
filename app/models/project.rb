@@ -227,4 +227,8 @@ class Project < ActiveRecord::Base
     ((Time.now- work_started_at) / 3600).round(1) unless work_started_at.nil?
   end
 
+  def time_working
+    (Time.now - work_started_at) unless work_started_at.nil?
+  end
+
 end

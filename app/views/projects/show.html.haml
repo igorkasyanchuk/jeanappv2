@@ -40,8 +40,10 @@
 = render :partial => '/own_hours/own_hours', :locals => { :project => @project }
 .add_more_block
   = semantic_form_for [current_user, @project, @project.own_hours.build], :remote => true, :html => { :class => 'none own_hour_form' } do |f|
+    -#= float_to_duration(@project.time_working) if @project.time_working.present? 
     = f.inputs do
-      = f.input :hours_count
+      -#= f.input :hours_count
+      = f.input :duration
       = f.input :description, :input_html => { :rows => '2', :cols => '40' }
     = f.buttons do
       = f.submit 'Add own hours'

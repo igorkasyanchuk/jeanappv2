@@ -420,9 +420,9 @@ function init_project_show_page() {
 
 function init_own_hours_stopwatch() {
   var container =  $('.stopwatch span')
-  var init_value = container.html()
+  var init_value = container.html().replace(/^\s+|\s+$/g, '')
   container.stopwatch().stopwatch('destroy')
-  if(init_value.replace('') != ''){
+  if(init_value.length > 0){
     container.stopwatch({startTime: Number(init_value)}).stopwatch('start')
     setTimeout(function() {container.parent().removeClass('none')}, 1000)
   }

@@ -70,8 +70,10 @@ class Project < ActiveRecord::Base
     self.jobs.by_user(user).inject(0) {|sum, e| sum += e.hours }
   end
 
-  def amount_total
-    self.jobs.inject(0) {|sum, e| sum += e.cost }
+  def amount_total(per_user = nil)
+    js = self.jobs
+    js = js.where(:person_id => per_user.id) if per_user
+    js.inject(0) {|sum, e| sum += e.cost }
   end
 
   def amount_paid

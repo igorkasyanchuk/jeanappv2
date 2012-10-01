@@ -18,7 +18,8 @@ class OwnHoursController < SecureController
   end
 
   def stop_work
-
+    @time_working = parent.time_working
+    parent.stop_work!
   end
 
   def cancel_work

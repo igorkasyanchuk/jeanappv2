@@ -29,7 +29,7 @@
 -#.right.work_action{ :class => @project.work_started? ? '' : 'none' }
   = link_to 'Cancel Work', cancel_work_user_project_own_hours_path(current_user, @project), :class => 'cancel_work_button', :remote => true
 
-.right.work_action{ :class => @project.work_started? ? '' : 'none' }
+.right.work_action.stop_work_action{ :class => @project.work_started? ? '' : 'none' }
   = link_to 'Stop Work', stop_work_user_project_own_hours_path(current_user, @project), :class => 'stop_work_button', :remote => true
 
 .right.work_action{ :class => @project.work_started? ? 'none' : '' }
@@ -39,7 +39,8 @@
   %span
     - if @project.time_working.present?
       = (@project.time_working * 1000).round
-.right.add= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'
+.none
+  .right.add.add_own_hours_button{:class => @project.work_started? ? 'none' : ''}= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'
 .clear
 = render :partial => '/own_hours/own_hours', :locals => { :project => @project }
 .add_more_block

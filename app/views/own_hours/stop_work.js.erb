@@ -1,6 +1,13 @@
-$('#own_hour_duration').val('<%= number_to_duration parent.time_working %>')
+$('#own_hour_duration').val('<%= number_to_duration @time_working %>')
 
 if(!$('.own_hour_form').is(':visible')){
   $('a:contains("Add Own Hours")').trigger('click');
 }
 
+$('.add_own_hours_button').removeClass("none");
+$('.stopwatch span').html('');
+$(".stop_work_action").hide();
+
+stop_own_hours_stopwatch();
+
+$('.stopwatch').hide();

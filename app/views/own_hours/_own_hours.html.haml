@@ -15,7 +15,7 @@
       = render :partial => '/own_hours/own_hour', :locals => { :own_hour => own_hour }
     .own_hour.summary
       .hours_count.hours_count_total
-        %strong== Total: #{project.project_own_hours} hours
+        %strong== Total: #{number_with_delimiter project.project_own_hours, :precision => 2} hours
       .clear
   - else
     .own_hours_list_is_empty

@@ -7,6 +7,10 @@ $('.own_hour_form a.hide').trigger('click');
 - else
   $('.own_hours_list_is_empty').show();
 
+$(".add_own_hours_button").show();
+$(".start_work_button").show();
+$(".start_work_button").parent().show();
+
 = update_project_details(@project)
 = refresh_diagram(@project)
 = clear_fields

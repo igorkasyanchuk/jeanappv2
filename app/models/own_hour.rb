@@ -2,7 +2,7 @@ class OwnHour < ActiveRecord::Base
   attr_accessor :duration
   belongs_to :project
   
-  validates :duration, :presence => true, :format => {:with => /\d{2}:\d{2}:\d{2}/}
+  validates :duration, :presence => true, :format => {:with => /\d{2}:\d{2}:\d{2}|\d*\.?\d*?/}
 
   #validates_numericality_of :hours_count
   validates_presence_of :description
@@ -23,6 +23,10 @@ class OwnHour < ActiveRecord::Base
   private
   def duration_to_hours_count
     d = @duration.split(':')
-    self.hours_count = ((d[0].to_f * 3600 + d[1].to_f * 60 + d[2].to_f) / 3600).round(1)
+    if d.size > 2
+      self.hours_count = ((d[0].to_f * 3600 + d[1].to_f * 60 + d[2].to_f) / 3600).round(1)
+    else
+      self.hours_count = @duration.to_f
+    end
   end
 end

@@ -33,14 +33,13 @@
   = link_to 'Stop Work', stop_work_user_project_own_hours_path(current_user, @project), :class => 'stop_work_button', :remote => true
 
 .right.work_action{ :class => @project.work_started? ? 'none' : '' }
-  = link_to 'Log Manual Time', start_work_user_project_own_hours_path(current_user, @project), :class => 'start_work_button', :remote => true
+  = link_to 'Log Time', start_work_user_project_own_hours_path(current_user, @project), :class => 'start_work_button', :remote => true
 .right.stopwatch.none
   Time Spent:
   %span
     - if @project.time_working.present?
       = (@project.time_working * 1000).round
-.none
-  .right.add.add_own_hours_button{:class => @project.work_started? ? 'none' : ''}= link_to 'Add Own Hours', '#', :class => 'add_button', :to => '.own_hour_form'
+.right.add.add_own_hours_button{:class => @project.work_started? ? 'none' : ''}= link_to 'Add Time', '#', :class => 'add_button add_own_hours_time_button', :to => '.own_hour_form'
 .clear
 = render :partial => '/own_hours/own_hours', :locals => { :project => @project }
 .add_more_block
@@ -48,7 +47,7 @@
     -#= float_to_duration(@project.time_working) if @project.time_working.present? 
     = f.inputs do
       -#= f.input :hours_count
-      = f.input :duration, :hint => 'format: HH:MM:SS'
+      = f.input :duration, :hint => 'format: HH:MM:SS or just a number'
       = f.input :description, :input_html => { :rows => '2', :cols => '40' }
     = f.buttons do
       = f.submit 'Add own hours'

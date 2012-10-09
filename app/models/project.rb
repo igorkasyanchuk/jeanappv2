@@ -63,11 +63,11 @@ class Project < ActiveRecord::Base
   end
 
   def hours_total
-    self.jobs.inject(0) {|sum, e| sum += e.hours }
+    self.jobs.inject(0) {|sum, e| sum += e.hours.to_f }
   end
 
   def employee_hours_total(user)
-    self.jobs.by_user(user).inject(0) {|sum, e| sum += e.hours }
+    self.jobs.by_user(user).inject(0) {|sum, e| sum += e.hours.to_f }
   end
 
   def amount_total(per_user = nil)
@@ -117,7 +117,7 @@ class Project < ActiveRecord::Base
   end
 
   def total_hours_by_person(p)
-    self.jobs_by(p).inject(0) {|sum, e| sum += e.hours }
+    self.jobs_by(p).inject(0) {|sum, e| sum += e.hours.to_f }
   end
 
   def total_money_by_person(p)

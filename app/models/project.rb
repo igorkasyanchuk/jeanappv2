@@ -135,18 +135,18 @@ class Project < ActiveRecord::Base
   end
 
   def project_total_hours
-    self.project_own_hours + self.hours_total
+    (self.project_own_hours + self.hours_total).to_f
   end
 
   def project_own_hours
-    self.own_hours.inject(0) {|sum, e| sum += e.hours_count }
+    self.own_hours.inject(0) {|sum, e| sum += e.hours_count.to_f }
   end
 
   def efficency
     if self.todays_project?
       0
     else
-      self.project_total_hours / (self.project_length * 24)
+      self.project_total_hours.to_f / (self.project_length * 24)
     end
   end
 
@@ -190,7 +190,7 @@ class Project < ActiveRecord::Base
   end
 
   def income
-    self.total_invoiced - self.amount_total - self.project_expenses
+    (self.total_invoiced - self.amount_total - self.project_expenses)
   end
 
   def money_chart
@@ -202,7 +202,7 @@ class Project < ActiveRecord::Base
   end
 
   def time_chart
-    [self.project_own_hours, self.hours_total]
+    [self.project_own_hours.to_f, self.hours_total.to_f]
   end
 
   def has_client?

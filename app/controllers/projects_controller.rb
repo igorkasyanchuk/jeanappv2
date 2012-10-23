@@ -16,6 +16,13 @@ class ProjectsController < SecureController
         current_user.update_attribute(:last_filter, nil)
         current_user.projects
     end
+
+    params[:sort] ||= current_user.sort_field
+    params[:direction] ||= current_user.sort_direction
+
+    current_user.update_attribute(:sort_field, params[:sort])
+    current_user.update_attribute(:sort_direction, params[:direction])
+
     if params[:sort] == 'hourly_rate'
       @projects = _projects.all.sort{|a, b| a.personal_rate <=> b.personal_rate}
       @projects.reverse! if params[:direction] == 'desc'

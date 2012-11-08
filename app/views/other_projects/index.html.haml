@@ -9,6 +9,7 @@
           %th Status
           %th Total Hours
           %th Amount
+          %th Pending
           %th Actions
       %tbody
         - @projects.each do |project|
@@ -17,6 +18,7 @@
             %td= project.project_status
             %td= number_with_delimiter project.employee_hours_total(current_user), :precision => 2
             %td= number_to_currency(project.amount_total(current_user), :precision => 2)
+            %td= number_to_currency(project.amount_pending(current_user), :precision => 2)
             %td
               - staff = project.project_staffs.by_person(current_user.id).first
               = link_to (staff.present? ? "Log Work" : "Details"), user_other_project_path(current_user, project)

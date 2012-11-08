@@ -29,7 +29,7 @@
         %td.icon{:width => '20px'}
           = check_box_tag "on_off_#{project.id}", project.turned_on?, project.turned_on?, :url => toggle_project_user_project_path(current_user, project, :filter => params['filter']), :class => 'project_on_off'
         %td
-          = link_to project.title, [current_user, project], :class => 'bold_text'
+          = link_to '#' + project.ui_title, [current_user, project], :class => 'bold_text', :title => project.title
           - if project.internal
             %span.internal internal
         %td

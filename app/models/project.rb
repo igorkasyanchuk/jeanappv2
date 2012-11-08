@@ -41,6 +41,10 @@ class Project < ActiveRecord::Base
   after_touch :recalculate_cached_budget!
   before_save :update_cached_budget
 
+  def ui_title
+    "%04d" % self.id
+  end
+
   def set_cached_budget!
     self.cached_budget = self.budget
   end
@@ -80,8 +84,10 @@ class Project < ActiveRecord::Base
     self.jobs.paid.inject(0) {|sum, e| sum += e.cost }
   end
 
-  def amount_pending
-    self.jobs.pending.inject(0) {|sum, e| sum += e.cost }
+  def amount_pending(per_user = nil)
+    js = self.jobs.pending
+    js = js.where(:person_id => per_user.id) if per_user
+    js.inject(0) {|sum, e| sum += e.cost }
   end
 
   def amount_approved

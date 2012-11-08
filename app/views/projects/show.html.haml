@@ -1,9 +1,9 @@
 = title @project.title
 
 - if @project.has_client?
-  %h1.left.project_name_on_page #{link_to @project.client.name, [@project.user, @project.client], :class => 'client_name_on_page'} &mdash; #{@project.title}
+  %h1.left.project_name_on_page ##{@project.ui_title} &mdash; #{link_to @project.client.name, [@project.user, @project.client], :class => 'client_name_on_page'} &mdash; #{@project.title}
 - else
-  %h1.left.project_name_on_page #{@project.title}
+  %h1.left.project_name_on_page ##{@project.ui_title} &mdash; #{@project.title}
 
 .add.right{:style => 'margin-top: 2em'}
   = link_to 'Edit', edit_resource_path(@project), :class => 'edit_button'

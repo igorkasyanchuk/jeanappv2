@@ -90,8 +90,10 @@ class Project < ActiveRecord::Base
     js.inject(0) {|sum, e| sum += e.cost }
   end
 
-  def amount_approved
-    self.jobs.approved.inject(0) {|sum, e| sum += e.cost }
+  def amount_approved(per_user = nil)
+    js = self.jobs.approved
+    js = js.where(:person_id => per_user.id) if per_user
+    js.inject(0) {|sum, e| sum += e.cost }
   end
 
   def amount_owe

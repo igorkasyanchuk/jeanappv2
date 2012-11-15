@@ -15,6 +15,7 @@
   %thead
     %tr
       %th.icon{:width => '20px'}
+      %th= sortable 'uuid', 'ID', { :filter => params['filter'] }
       %th= sortable 'title', 'Title', { :filter => params['filter'] }
       %th= sortable 'client', 'Client', { :filter => params['filter'] }
       %th= sortable 'started_on', 'Started on', { :filter => params['filter'] }
@@ -29,9 +30,10 @@
         %td.icon{:width => '20px'}
           = check_box_tag "on_off_#{project.id}", project.turned_on?, project.turned_on?, :url => toggle_project_user_project_path(current_user, project, :filter => params['filter']), :class => 'project_on_off'
         %td
-          = link_to '#' + project.ui_title, [current_user, project], :class => 'bold_text', :title => project.title
+          = link_to project.ui_title, [current_user, project], :class => 'bold_text', :title => project.title
           - if project.internal
             %span.internal internal
+        %td= link_to project.title, [current_user, project]
         %td
           - if project.client.present?
             = link_to project.client.name, [current_user, project.client]

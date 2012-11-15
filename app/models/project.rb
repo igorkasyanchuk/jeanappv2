@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
   validates_presence_of :budget
   validates_numericality_of :budget
 
+  validates_uniqueness_of :uuid, :scope => :user_id
+
   validates_presence_of :user_id
   belongs_to :user
   belongs_to :client
@@ -42,7 +44,7 @@ class Project < ActiveRecord::Base
   before_save :update_cached_budget
 
   def ui_title
-    "%04d" % self.id
+    self.uuid
   end
 
   def set_cached_budget!

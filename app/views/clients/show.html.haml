@@ -24,6 +24,7 @@
     %thead
       %tr
         %th.icon{:width => '20px'}
+        %th= sortable 'uuid', 'ID', { :filter => params['filter'] }, :project_sort_column
         %th= sortable 'title', 'Title', { :filter => params['filter'] }, :project_sort_column
         %th= sortable 'started_on', 'Started on', { :filter => params['filter'] }, :project_sort_column
         %th= sortable 'completed_on', 'Closed on', { :filter => params['filter'] }, :project_sort_column
@@ -36,6 +37,7 @@
         %tr{ :class => "#{cycle(:odd, :even)} #{project.completed? ? 'completed' : ''}" }
           %td.icon{:width => '20px'}
             = check_box_tag "on_off_#{project.id}", project.turned_on?, project.turned_on?, :url => toggle_project_user_project_path(current_user, project, :filter => params['filter'], :client_page => 'yes'), :class => 'project_on_off'
+          %td= link_to project.ui_title, [current_user, project]
           %td
             = link_to project.title, [current_user, project], :class => 'bold_text'
           %td= project.started_on

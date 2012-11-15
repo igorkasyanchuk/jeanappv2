@@ -5,6 +5,7 @@
     %table.zebra
       %thead
         %tr
+          %th ID
           %th Project Name
           %th Status
           %th Total Hours
@@ -14,6 +15,7 @@
       %tbody
         - @projects.each do |project|
           %tr
+            %td= link_to project.ui_title, user_other_project_path(current_user, project)
             %td= link_to project.title, user_other_project_path(current_user, project)
             %td= project.project_status
             %td= number_with_delimiter project.employee_hours_total(current_user), :precision => 2

@@ -6,7 +6,7 @@
 = semantic_form_for([current_user, @project]) do |f|
   - f.inputs do
     = f.input :title
-    = f.input :uuid
+    = f.input :uuid, :label => 'UUID'
     = f.input :client, :collection => current_user.clients.order_by_name.all
     = f.input :description, :input_html => { :rows => 8 }
     = f.input :started_on, :input_html => {:class => 'date_picker'}, :as => :string

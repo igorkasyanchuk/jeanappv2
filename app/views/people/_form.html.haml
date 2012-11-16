@@ -5,17 +5,17 @@
 
 = semantic_form_for([current_user, @person]) do |f|
   - f.inputs do
-    = f.input :first_name, :label => 'First Name'
-    = f.input :last_name, :label => 'Last Name'
-    = f.input :email
-    = f.input :hourly_rate, :label => 'Hourly Rate', :input_html => {:class => 'short_field'}
-    = f.input :password, :input_html => { :value => '123456xx', :readonly => true }, :as => :hidden
-    - unless f.object.new_record?
+    - if f.object.new_record?
       = f.input :first_name, :label => 'First Name'
       = f.input :last_name, :label => 'Last Name'
       = f.input :email
       = f.input :hourly_rate, :label => 'Hourly Rate', :input_html => {:class => 'short_field'}
       = f.input :password, :input_html => { :value => '123456xx', :readonly => true }, :as => :hidden
+    - else
+      = f.input :first_name, :label => 'First Name'
+      = f.input :last_name, :label => 'Last Name'
+      = f.input :email
+      = f.input :hourly_rate, :label => 'Hourly Rate', :input_html => {:class => 'short_field'}
       = f.input :dob, :as => :date, :label => 'Birthday', :discard_year => true
       = f.input :country, :input_html => {:class => 'short_field'}, :priority_countries => []
       = f.input :city, :input_html => {:class => 'short_field'}

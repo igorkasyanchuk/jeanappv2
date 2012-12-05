@@ -28,6 +28,8 @@ class Person < ActiveRecord::Base
   
   before_save :geocode_it!, :set_employee_flag!, :set_default_password!
 
+  after_save :update_rate_for_open_jobs
+
   scope :by_name, order(:first_name)
   scope :with_invitation_not_accepted, where("invitation_uuid is not NULL AND invitation_uuid <> ''")
   scope :with_invitation_accepted, where("invitation_uuid is NULL or invitation_uuid = ''")
@@ -107,6 +109,10 @@ class Person < ActiveRecord::Base
 
   def total_money_on project
     self.jobs_on(project).inject(0) {|sum, e| sum += e.cost }
+  end
+
+  def update_rate_for_open_jobs
+    self.project_staffs.update_all(:hourly_rate => self.hourly_rate)
   end
   
 end
